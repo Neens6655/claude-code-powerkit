@@ -1,12 +1,14 @@
 # MCP Servers Guide
 
-MCP (Model Context Protocol) servers give Claude real tools — browser control, web search, GitHub, databases, academic papers.
+MCP (Model Context Protocol) servers give Claude real tools — browser control, web search, GitHub, databases.
 
-The config template is at `configs/mcp.json`. Copy it to your project root as `.mcp.json` and fill in your API keys.
+Copy `configs/mcp.json` to your project root as `.mcp.json` and fill in your API keys.
+
+> **Security**: Never commit `.mcp.json` to git. Run: `echo '.mcp.json' >> .gitignore`
 
 ---
 
-## Essential (install these first)
+## Essential (install first)
 
 ### Playwright — Browser Automation
 Screenshots, testing, scraping, form filling. Claude's eyes.
@@ -31,7 +33,7 @@ Fast web search from within Claude.
 **Get key**: [brave.com/search/api](https://brave.com/search/api) — Free: 2,000 queries/month
 
 ### GitHub — Repo Management
-Create PRs, search code, manage issues without leaving Claude.
+Create PRs, search code, manage issues.
 ```json
 "github": {
   "command": "npx",
@@ -39,14 +41,14 @@ Create PRs, search code, manage issues without leaving Claude.
   "env": { "GITHUB_PERSONAL_ACCESS_TOKEN": "YOUR_PAT" }
 }
 ```
-**Get key**: [github.com/settings/tokens](https://github.com/settings/tokens) — Free: unlimited
+**Get key**: [github.com/settings/tokens](https://github.com/settings/tokens) — Free
 
 ---
 
 ## Search & Research
 
 ### Exa — AI-Native Search
-Better than Google for technical queries. Neural search.
+Better than Google for technical queries.
 ```json
 "exa": {
   "command": "npx",
@@ -56,33 +58,20 @@ Better than Google for technical queries. Neural search.
 ```
 **Get key**: [exa.ai](https://exa.ai) — Free: 1,000 searches/month
 
-### Paper Search — SSRN, arXiv, Semantic Scholar
-Academic paper search across multiple databases in one server.
-```json
-"paper-search": {
-  "command": "npx",
-  "args": ["-y", "paper-search-mcp"],
-  "env": {}
-}
-```
-**API key**: None needed.
-**Repo**: [openags/paper-search-mcp](https://github.com/openags/paper-search-mcp)
+### Academic Papers (SSRN, arXiv, Semantic Scholar)
+For research — check these community MCP servers:
+- [openags/paper-search-mcp](https://github.com/openags/paper-search-mcp) — multi-database paper search
+- [JackKuo666/Google-Scholar-MCP-Server](https://github.com/JackKuo666/Google-Scholar-MCP-Server) — Google Scholar
+- [perplexityai/modelcontextprotocol](https://github.com/perplexityai/modelcontextprotocol) — Perplexity search + reasoning (paid: $5/month)
 
-### Perplexity — Search + Reasoning
-Web search with AI reasoning built in.
-**Repo**: [perplexityai/modelcontextprotocol](https://github.com/perplexityai/modelcontextprotocol)
-**Get key**: [perplexity.ai/settings/api](https://perplexity.ai/settings/api) — $5/month
-
-### Google Scholar (Community)
-Direct Google Scholar integration.
-**Repo**: [JackKuo666/Google-Scholar-MCP-Server](https://github.com/JackKuo666/Google-Scholar-MCP-Server)
+> These require manual setup from their GitHub repos. Follow each repo's install instructions.
 
 ---
 
-## Web Scraping & Extraction
+## Web Scraping
 
-### Firecrawl — Web Scraping
-Crawl websites, extract structured data, scrape pages.
+### Firecrawl — Structured Extraction
+Crawl websites, extract data.
 ```json
 "firecrawl": {
   "command": "npx",
@@ -97,11 +86,11 @@ Crawl websites, extract structured data, scrape pages.
 ## Databases & Infrastructure
 
 ### Supabase — Database
-Postgres database, auth, storage, realtime.
+Postgres, auth, storage, realtime.
 ```json
 "supabase": {
   "command": "npx",
-  "args": ["-y", "supabase-mcp-server"],
+  "args": ["-y", "@supabase/mcp-server-supabase"],
   "env": {
     "SUPABASE_URL": "YOUR_URL",
     "SUPABASE_SERVICE_KEY": "YOUR_KEY"
@@ -111,7 +100,7 @@ Postgres database, auth, storage, realtime.
 **Get key**: [supabase.com](https://supabase.com) — Free: 2 projects
 
 ### Sentry — Error Tracking
-Monitor errors in production apps.
+Monitor production errors.
 ```json
 "sentry": {
   "command": "npx",
@@ -135,4 +124,3 @@ All keys are **yours to create**. Sign up at each service.
 | Firecrawl | firecrawl.dev | 500 pages/month |
 | Supabase | supabase.com | 2 projects |
 | Sentry | sentry.io | 5,000 events/month |
-| Perplexity | perplexity.ai/settings/api | $5/month |

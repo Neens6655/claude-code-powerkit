@@ -25,11 +25,6 @@
         "EXA_API_KEY": "YOUR_EXA_API_KEY"
       }
     },
-    "paper-search": {
-      "command": "npx",
-      "args": ["-y", "paper-search-mcp"],
-      "env": {}
-    },
     "firecrawl": {
       "command": "npx",
       "args": ["-y", "firecrawl-mcp"],
@@ -39,7 +34,7 @@
     },
     "supabase": {
       "command": "npx",
-      "args": ["-y", "supabase-mcp-server"],
+      "args": ["-y", "@supabase/mcp-server-supabase"],
       "env": {
         "SUPABASE_URL": "YOUR_SUPABASE_URL",
         "SUPABASE_SERVICE_KEY": "YOUR_SUPABASE_KEY"

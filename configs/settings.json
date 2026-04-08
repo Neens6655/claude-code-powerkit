@@ -16,7 +16,7 @@
       "Bash(gh auth status)",
       "WebSearch"
     ],
-    "defaultMode": "allowEdits"
+    "defaultMode": "default"
   },
   "hooks": {
     "PreToolUse": [
@@ -25,20 +25,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "if echo \"$ARGUMENTS\" | grep -qiE '\"command\"\\s*:\\s*\"(npm install|yarn install|yarn add)'; then echo 'BLOCKED: Use bun instead of npm/yarn. Run: bun install or bun add <package>' >&2; exit 2; fi",
+            "command": "if echo \"$ARGUMENTS\" | grep -qiE '\"command\"\\s*:\\s*\"(npm install[^-]|yarn install|yarn add)'; then echo 'BLOCKED: Use bun instead of npm/yarn. Run: bun install or bun add <package>' >&2; exit 2; fi",
             "statusMessage": "Checking package manager..."
-          }
-        ]
-      },
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "agent",
-            "if": "Bash(vercel deploy*)",
-            "prompt": "Run bun test or npm test. Return ok:true if all pass. Return ok:false with failure list if any fail. Do not proceed with deploy if tests fail.",
-            "timeout": 180,
-            "statusMessage": "Running pre-deploy test gate..."
           }
         ]
       }

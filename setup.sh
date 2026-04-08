@@ -2,14 +2,15 @@
 set -e
 
 # ============================================
-# Ziad StarterKit — Claude Code Setup Script
+# Ziad StarterKit - Claude Code Setup Script
 # ============================================
+# Run in: macOS Terminal, Linux shell, Git Bash, or WSL
+# NOT supported: Windows PowerShell, CMD
 
 echo ""
-echo "  ╔═══════════════════════════════════╗"
-echo "  ║     Ziad StarterKit               ║"
-echo "  ║     Claude Code Setup             ║"
-echo "  ╚═══════════════════════════════════╝"
+echo "  Ziad StarterKit"
+echo "  Claude Code Setup"
+echo "  -----------------"
 echo ""
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -18,99 +19,126 @@ CLAUDE_DIR="$HOME/.claude"
 # ---- Phase 1: Prerequisites ----
 echo "--- Phase 1: Checking prerequisites ---"
 
+MISSING=false
+
 check_cmd() {
   if command -v "$1" &>/dev/null; then
     echo "  [OK] $1"
   else
-    echo "  [MISSING] $1 — install it first (see README.md)"
+    echo "  [MISSING] $1"
     MISSING=true
   fi
 }
 
-MISSING=false
 check_cmd node
 check_cmd git
-check_cmd bun || {
-  echo "  Installing bun..."
-  npm install -g bun 2>/dev/null || echo "  [WARN] Could not install bun automatically. Run: npm install -g bun"
-}
+
+# Try to install bun if missing
+if ! command -v bun &>/dev/null; then
+  echo "  [MISSING] bun - attempting install..."
+  npm install -g bun 2>/dev/null && echo "  [OK] bun installed" || {
+    echo "  [WARN] Could not auto-install bun. Run: npm install -g bun"
+    MISSING=true
+  }
+else
+  echo "  [OK] bun"
+fi
 
 if [ "$MISSING" = true ]; then
   echo ""
-  echo "Some prerequisites are missing. Install them and re-run this script."
-  echo "See README.md for install commands."
+  echo "  Some prerequisites are missing. Install them first:"
+  echo "    Node.js: https://nodejs.org"
+  echo "    Git:     https://git-scm.com"
+  echo "    bun:     npm install -g bun"
   exit 1
 fi
 
 # ---- Phase 2: Copy configs ----
 echo ""
-echo "--- Phase 2: Installing configs ---"
+echo "--- Phase 2: Installing Claude Code configs ---"
 
-# Settings
 mkdir -p "$CLAUDE_DIR"
+
 if [ -f "$CLAUDE_DIR/settings.json" ]; then
-  echo "  [SKIP] ~/.claude/settings.json already exists (not overwriting)"
-  echo "         Compare with: $SCRIPT_DIR/configs/settings.json"
+  echo "  [SKIP] ~/.claude/settings.json already exists"
+  echo ""
+  echo "  Your existing file was NOT overwritten."
+  echo "  The kit includes these hooks you may want to merge manually:"
+  echo "    - Package manager gate (blocks npm/yarn, forces bun)"
+  echo "    - Frontend build check (reminds to verify after .tsx/.css edits)"
+  echo "    - Quality gate on stop (reminds to test/screenshot)"
+  echo "  Compare: $SCRIPT_DIR/configs/settings.json"
 else
   cp "$SCRIPT_DIR/configs/settings.json" "$CLAUDE_DIR/settings.json"
   echo "  [OK] Copied settings.json to ~/.claude/"
 fi
 
-# CLAUDE.md — only copy if user is in a project directory
 echo ""
-echo "  Config files are ready in: $SCRIPT_DIR/configs/"
-echo "  To use them in a project, copy manually:"
+echo "  To use configs in a project, copy them manually:"
 echo ""
-echo "    cp $SCRIPT_DIR/configs/CLAUDE.md /path/to/your/project/"
-echo "    cp $SCRIPT_DIR/configs/mcp.json /path/to/your/project/.mcp.json"
-echo "    mkdir -p /path/to/your/project/.claude/rules"
-echo "    cp $SCRIPT_DIR/configs/rules/* /path/to/your/project/.claude/rules/"
+echo "    # Copy project template"
+echo "    cp $SCRIPT_DIR/configs/CLAUDE.md /your/project/"
+echo ""
+echo "    # Copy MCP server config (then fill in YOUR API KEYS)"
+echo "    cp $SCRIPT_DIR/configs/mcp.json /your/project/.mcp.json"
+echo ""
+echo "    # IMPORTANT: Add .mcp.json to your .gitignore (it has API keys!)"
+echo "    echo '.mcp.json' >> /your/project/.gitignore"
+echo ""
+echo "    # Copy coding rules"
+echo "    mkdir -p /your/project/.claude/rules"
+echo "    cp $SCRIPT_DIR/configs/rules/* /your/project/.claude/rules/"
 
 # ---- Phase 3: Install Playwright ----
 echo ""
 echo "--- Phase 3: Installing Playwright browsers ---"
-npx playwright install firefox chromium 2>/dev/null || echo "  [WARN] Playwright install failed. Run manually: npx playwright install firefox chromium"
+npx playwright install firefox chromium 2>/dev/null && echo "  [OK] Playwright browsers installed" || {
+  echo "  [WARN] Playwright install failed."
+  echo "  Try manually: npx playwright install firefox chromium"
+  echo "  On Linux, you may need: npx playwright install --with-deps"
+}
 
 # ---- Phase 4: Enable plugins ----
 echo ""
 echo "--- Phase 4: Enabling plugins ---"
 
-enable_plugin() {
-  echo "  Enabling $1..."
-  claude plugin enable "$1" 2>/dev/null || echo "  [WARN] Could not enable $1 — enable manually in Claude Code"
-}
-
 if command -v claude &>/dev/null; then
-  enable_plugin claude-code-setup
-  enable_plugin frontend-design
-  enable_plugin playwright
-  enable_plugin agent-sdk-dev
-  enable_plugin claude-md-management
-  enable_plugin code-simplifier
+  for plugin in claude-code-setup frontend-design playwright agent-sdk-dev claude-md-management code-simplifier; do
+    claude plugin enable "$plugin" 2>/dev/null && echo "  [OK] $plugin" || echo "  [WARN] Could not enable $plugin"
+  done
 else
-  echo "  [SKIP] Claude CLI not found. Enable plugins manually after installing Claude Code."
+  echo "  [SKIP] Claude CLI not found."
+  echo "  Install Claude Code first: npm install -g @anthropic-ai/claude-code"
+  echo "  Then enable plugins manually in settings."
 fi
 
-# ---- Phase 5: Summary ----
+# ---- Phase 5: Check for unfilled placeholders ----
+echo ""
+echo "--- Phase 5: Checking for unfilled API keys ---"
+
+PLACEHOLDERS=$(grep -r "YOUR_" "$SCRIPT_DIR/configs/mcp.json" 2>/dev/null | grep -oP 'YOUR_\w+' | sort -u)
+if [ -n "$PLACEHOLDERS" ]; then
+  echo "  These API keys need to be filled in configs/mcp.json:"
+  echo "$PLACEHOLDERS" | while read key; do echo "    - $key"; done
+  echo ""
+  echo "  Get free keys at:"
+  echo "    Brave Search:  https://brave.com/search/api"
+  echo "    GitHub PAT:    https://github.com/settings/tokens"
+  echo "    Exa:           https://exa.ai"
+  echo "    Firecrawl:     https://firecrawl.dev"
+  echo "    Supabase:      https://supabase.com"
+  echo "    Sentry:        https://sentry.io"
+fi
+
+# ---- Done ----
 echo ""
 echo "--- Setup Complete ---"
 echo ""
 echo "  Next steps:"
+echo "  1. Fill in API keys in configs/mcp.json"
+echo "  2. Copy configs to your project (see Phase 2 above)"
+echo "  3. Install skills from SKILLS.md"
+echo "  4. Run: claude 'hello, summarize my setup'"
 echo ""
-echo "  1. Get your API keys (all free tier):"
-echo "     - Brave Search: brave.com/search/api"
-echo "     - GitHub PAT:   github.com/settings/tokens"
-echo "     - Exa:          exa.ai"
-echo "     - Firecrawl:    firecrawl.dev"
-echo ""
-echo "  2. Edit your .mcp.json and replace YOUR_* placeholders with real keys"
-echo ""
-echo "  3. Install skills (see SKILLS.md for the full catalog):"
-echo "     git clone https://github.com/anthropics/skills.git /tmp/skills"
-echo "     claude skill add /tmp/skills/path/to/SKILL.md"
-echo ""
-echo "  4. Open a project and run:"
-echo "     claude \"hello, summarize my setup\""
-echo ""
-echo "  Read TIPS.md for pro tips from 200+ hours of usage."
+echo "  Read TIPS.md for lessons from 200+ hours of usage."
 echo ""

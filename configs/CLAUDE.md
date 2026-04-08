@@ -1,9 +1,11 @@
 # CLAUDE.md
 
-## Stack
+> This is a template. Customize the sections marked CUSTOMIZE to match your project.
+
+## Stack — CUSTOMIZE
 
 - **Frontend**: React 19 + Tailwind v4 + TypeScript (strict mode)
-- **Package manager**: bun (never npm or yarn)
+- **Package manager**: bun (or npm — your choice)
 - **Framework**: Next.js 15 (SSR/content) or Vite (SPAs)
 - **Testing**: Vitest (frontend), pytest (Python)
 - **API**: Hono (bridges) or FastAPI (Python-native)
@@ -21,16 +23,16 @@
 - Prefer utility classes over custom CSS
 - Use CSS variables for design tokens
 
-### Fonts
-- Primary: IBM Plex Mono
-- Secondary: IBM Plex Sans
+### Fonts — CUSTOMIZE
+- Primary: your choice (e.g., Inter, IBM Plex Mono, JetBrains Mono)
+- Secondary: your choice
 - Load via Google Fonts or self-host
 
-## Quality Gates
+## Quality Gates (Universal — Keep These)
 
 ### Before Every Deploy
-1. Build passes locally (`bun run build` exits 0)
-2. All tests pass (`bun test`)
+1. Build passes locally (`bun run build` or `npm run build` exits 0)
+2. All tests pass
 3. Playwright screenshots taken at 1440px (desktop) + 375px (mobile)
 4. No console errors in browser
 5. Core user action completes end-to-end
@@ -48,12 +50,6 @@ Files over 2,000 lines get silently truncated by the Read tool. Always:
 1. Run `wc -l <file>` first
 2. Use `offset` and `limit` params to read in chunks
 3. Continue until entire file is read
-
-## Ports
-Never use 3000, 3001, 3002, or 4000 (often already taken). Scan for free port. Prefer: 3777, 4567, 5173, 6173.
-
-## After Every Code Change
-End your reply with a clickable `http://localhost:[port]` link to the running dev server.
 
 ## Model Routing (for subagents)
 
