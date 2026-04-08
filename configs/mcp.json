@@ -25,11 +25,39 @@
         "EXA_API_KEY": "YOUR_EXA_API_KEY"
       }
     },
+    "perplexity": {
+      "command": "npx",
+      "args": ["-y", "perplexity-mcp"],
+      "env": {
+        "PERPLEXITY_API_KEY": "YOUR_PERPLEXITY_API_KEY"
+      }
+    },
     "firecrawl": {
       "command": "npx",
       "args": ["-y", "firecrawl-mcp"],
       "env": {
-        "FIRECRAWL_API_KEY": "YOUR_FIRECRAWL_KEY"
+        "FIRECRAWL_API_KEY": "YOUR_FIRECRAWL_API_KEY"
+      }
+    },
+    "apify": {
+      "command": "npx",
+      "args": ["-y", "@apify/mcp-server"],
+      "env": {
+        "APIFY_TOKEN": "YOUR_APIFY_TOKEN"
+      }
+    },
+    "google-maps": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-google-maps"],
+      "env": {
+        "GOOGLE_MAPS_API_KEY": "YOUR_GOOGLE_MAPS_API_KEY"
+      }
+    },
+    "openai": {
+      "command": "npx",
+      "args": ["-y", "@openai/mcp-server-openai"],
+      "env": {
+        "OPENAI_API_KEY": "YOUR_OPENAI_API_KEY"
       }
     },
     "supabase": {
@@ -37,15 +65,19 @@
       "args": ["-y", "@supabase/mcp-server-supabase"],
       "env": {
         "SUPABASE_URL": "YOUR_SUPABASE_URL",
-        "SUPABASE_SERVICE_KEY": "YOUR_SUPABASE_KEY"
+        "SUPABASE_SERVICE_KEY": "YOUR_SUPABASE_SERVICE_KEY"
       }
     },
     "sentry": {
       "command": "npx",
       "args": ["-y", "@sentry/mcp-server"],
       "env": {
-        "SENTRY_AUTH_TOKEN": "YOUR_SENTRY_TOKEN"
+        "SENTRY_AUTH_TOKEN": "YOUR_SENTRY_AUTH_TOKEN"
       }
+    },
+    "paper-search": {
+      "command": "npx",
+      "args": ["-y", "paper-search-mcp"]
     }
   }
 }
