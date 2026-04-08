@@ -1,6 +1,6 @@
 # Skills Catalog
 
-55+ Claude Code skills organized by what they do. Each skill is a markdown file that gives Claude deep expertise in a domain — type `/skill-name` in any session to activate it.
+**48 installable skills** + 7 inspiration-only skills listed at the bottom. Each skill is a markdown file that gives Claude deep expertise in a domain — type `/skill-name` in any session to activate it.
 
 ## How to Install Skills
 
@@ -120,9 +120,6 @@ If you can only install 10 skills, start here:
 
 | Skill | What it does | Install from |
 |-------|-------------|-------------|
-| `/autopilot` | Brief-to-deployment autonomous pipeline. Zero gates — give a brief, get a shipped product. | Author's custom |
-| `/iterate` | Audit-first improvement cycle for shipped products. Finds the highest-impact changes based on data or feedback. | Author's custom |
-| `/ship` | Deployment skill — pre-flight checks (lint, build, tests), deploy, smoke-test at 375px + 1440px, confirm live URL. | Author's custom |
 | `/behavioral-modes` | Switches Claude into focused operational modes: brainstorm (divergent, no code) / implement / debug / review / ship. | Collections |
 | `/hierarchical-agent-memory` | Scoped CLAUDE.md memory system. Creates project-level memory that doesn't bloat global context. | [kromahlusenii-ops/ham](https://github.com/kromahlusenii-ops/ham) |
 | `/checkpoint` | Save and restore pipeline state for long-running multi-phase tasks. Resume after interruption. | Collections |
@@ -150,18 +147,6 @@ If you can only install 10 skills, start here:
 
 ---
 
-## Trading & Quantitative Analysis
-
-| Skill | What it does | Install from |
-|-------|-------------|-------------|
-| `/backtest` | Comprehensive strategy validation — walk-forward (4+ folds), Monte Carlo, Deflated Sharpe Ratio. 22-check compliance gate. 9-tab ZGNAL report. | Author's custom |
-| `/autoforge` | Autonomous strategy optimization. Designs experiments, runs backtests, selects winners, generates next iteration. | Author's custom |
-| `/autoresearch` | ML experimentation using Karpathy's autoresearch framework. Hypothesis → experiment → analysis loop. | Author's custom |
-| `/quant-analyst` | Quantitative research: signal analysis, regime detection, correlation, factor decomposition. | Author's custom |
-| `/intel` | Trade intelligence system v4.1 — scan signals, regime analysis, trade alerts. | Author's custom |
-
----
-
 ## Business & SaaS
 
 | Skill | What it does | Install from |
@@ -183,3 +168,21 @@ If you can only install 10 skills, start here:
 | `/claude-code-setup` | Analyzes a codebase and recommends Claude Code automations — hooks, subagents, memory patterns. | Built-in plugin |
 | `/audit-design` | Comprehensive visual design QA using Playwright. Screenshots, WCAG contrast checks, font checks, mobile nav. | Collections |
 | `/release-skills` | Universal release workflow — auto-detects version files, generates changelogs, tags, pushes. | Collections |
+
+---
+
+## Author's Custom Skills — Inspiration Only
+
+> These skills are **not publicly available** as standalone installs. They're listed so you know what's possible to build with the Claude Skill system. Use them as blueprints for your own custom skills.
+
+| Skill | What it does | Why it's listed |
+|-------|-------------|----------------|
+| `/autopilot` | Brief-to-deployment autonomous pipeline. Zero gates — give a brief, get a shipped product. | Shows what a full "hands-off build" skill looks like |
+| `/iterate` | Audit-first improvement cycle for shipped products. Finds highest-impact changes from data or feedback. | Shows how to chain audit + fix into one skill |
+| `/ship` | Deployment with pre-flight checks, smoke-tests at 375px + 1440px, live URL verification. | Shows how to encode a deploy checklist as a skill |
+| `/backtest` | Strategy validation — walk-forward (4+ folds), Monte Carlo, Deflated Sharpe. 22-check compliance gate. | Shows domain-specific skill with hard quality gates |
+| `/autoforge` | Autonomous strategy optimization. Designs experiments, runs them, selects winners, iterates. | Shows a self-improving research loop as a skill |
+| `/autoresearch` | ML experimentation using Karpathy's autoresearch framework. Hypothesis → experiment → analysis. | Shows scientific method encoded as a skill |
+| `/intel` | Trade intelligence system — scan signals, regime analysis, trade alerts. | Shows a real-time data skill with external APIs |
+
+Want to build your own? Start with [alirezarezvani/claude-code-skill-factory](https://github.com/alirezarezvani/claude-code-skill-factory) — it generates skill scaffolding from a description.
