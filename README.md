@@ -212,26 +212,24 @@ Skills from "collections" live in mega-repos. Clone the repo and copy the folder
 
 ## Quick Setup Checklist
 
-```
-Phase 1 — Foundation
-[ ] Install Claude Code (CLI, VS Code extension, or Desktop app)
-[ ] Install bun, git, gh
-[ ] Run: bash setup.sh
+#### Phase 1 — Foundation
+- [ ] Install Claude Code ([CLI, VS Code, or Desktop](https://docs.anthropic.com/en/docs/claude-code/overview))
+- [ ] Install bun, git, gh
+- [ ] Run: `bash setup.sh`
+- [ ] Try it now (no API key needed): `claude "take a Playwright screenshot of google.com"`
 
-Phase 2 — Skills
-[ ] Browse SKILLS.md, pick 10 skills
-[ ] Install them: copy SKILL.md to ~/.claude/skills/[name]/
+#### Phase 2 — MCP Servers
+- [ ] Copy `configs/mcp.json` to your project as `.mcp.json`
+- [ ] Fill in API keys (start with Brave + GitHub PAT — both free, 5 minutes)
+- [ ] Add `.mcp.json` to `.gitignore`
 
-Phase 3 — MCP Servers
-[ ] Copy configs/mcp.json to your project as .mcp.json
-[ ] Fill in API keys (start with Brave + GitHub PAT — both free)
-[ ] Add .mcp.json to .gitignore
+#### Phase 3 — Skills
+- [ ] Browse [SKILLS.md](SKILLS.md), pick 10 from the priority list
+- [ ] Install them: copy `SKILL.md` to `~/.claude/skills/[name]/`
 
-Phase 4 — Verify
-[ ] Run: claude "hello, what skills and MCP tools do you have?"
-[ ] Test: "take a Playwright screenshot of google.com"
-[ ] Test: "search the web for latest Claude Code news"
-```
+#### Phase 4 — Verify
+- [ ] Run: `claude "hello, what skills and MCP tools do you have?"`
+- [ ] Test search: `claude "search the web for latest Claude Code news"`
 
 ---
 

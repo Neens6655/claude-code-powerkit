@@ -104,7 +104,7 @@ echo "--- Phase 4: Enabling plugins ---"
 
 if command -v claude &>/dev/null; then
   for plugin in claude-code-setup frontend-design playwright agent-sdk-dev claude-md-management code-simplifier; do
-    claude plugin enable "$plugin" 2>/dev/null && echo "  [OK] $plugin" || echo "  [WARN] Could not enable $plugin"
+    claude plugin enable "$plugin" 2>&1 && echo "  [OK] $plugin" || claude plugin enable "${plugin}@claude-plugins-official" 2>/dev/null && echo "  [OK] $plugin" || echo "  [WARN] Could not enable $plugin (install manually in Claude Code settings)"
   done
 else
   echo "  [SKIP] Claude CLI not found."
@@ -116,7 +116,7 @@ fi
 echo ""
 echo "--- Phase 5: Checking for unfilled API keys ---"
 
-PLACEHOLDERS=$(grep -r "YOUR_" "$SCRIPT_DIR/configs/mcp.json" 2>/dev/null | grep -oP 'YOUR_\w+' | sort -u)
+PLACEHOLDERS=$(grep -oE 'YOUR_[A-Z_]+' "$SCRIPT_DIR/configs/mcp.json" 2>/dev/null | sort -u)
 if [ -n "$PLACEHOLDERS" ]; then
   echo "  These API keys need to be filled in configs/mcp.json:"
   echo "$PLACEHOLDERS" | while read key; do echo "    - $key"; done

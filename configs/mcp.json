@@ -41,7 +41,7 @@
     },
     "apify": {
       "command": "npx",
-      "args": ["-y", "@apify/mcp-server"],
+      "args": ["-y", "@apify/actors-mcp-server"],
       "env": {
         "APIFY_TOKEN": "YOUR_APIFY_TOKEN"
       }
@@ -53,9 +53,9 @@
         "GOOGLE_MAPS_API_KEY": "YOUR_GOOGLE_MAPS_API_KEY"
       }
     },
-    "openai": {
+    "openai-compatible": {
       "command": "npx",
-      "args": ["-y", "@openai/mcp-server-openai"],
+      "args": ["-y", "mcp-openai"],
       "env": {
         "OPENAI_API_KEY": "YOUR_OPENAI_API_KEY"
       }
@@ -75,9 +75,9 @@
         "SENTRY_AUTH_TOKEN": "YOUR_SENTRY_AUTH_TOKEN"
       }
     },
-    "paper-search": {
+    "memory": {
       "command": "npx",
-      "args": ["-y", "paper-search-mcp"]
+      "args": ["-y", "@modelcontextprotocol/server-memory"]
     }
   }
 }

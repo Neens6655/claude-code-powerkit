@@ -25,7 +25,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "if echo \"$ARGUMENTS\" | grep -qiE '\"command\"\\s*:\\s*\"(npm install[^-]|yarn install|yarn add)'; then echo 'BLOCKED: Use bun instead of npm/yarn. Run: bun install or bun add <package>' >&2; exit 2; fi",
+            "command": "if echo \"$ARGUMENTS\" | grep -qiE '\"command\"\\s*:\\s*\"(npm (install|add)|yarn (install|add))'; then echo 'BLOCKED: Use bun instead of npm/yarn. Run: bun install or bun add <package>' >&2; exit 2; fi",
             "statusMessage": "Checking package manager..."
           }
         ]

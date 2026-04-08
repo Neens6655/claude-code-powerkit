@@ -112,19 +112,19 @@ Combines web search with AI reasoning. Best for questions that need synthesis ac
 
 ---
 
-### Academic Papers — Multi-Database Research Search
-Search SSRN, arXiv, Semantic Scholar, and PubMed from one MCP server.
+### Memory — Persistent Cross-Session Memory
+Gives Claude persistent memory that survives across sessions. Store facts, preferences, and context once — Claude recalls them later.
 
 ```json
-"paper-search": {
+"memory": {
   "command": "npx",
-  "args": ["-y", "paper-search-mcp"]
+  "args": ["-y", "@modelcontextprotocol/server-memory"]
 }
 ```
 
-**API key**: None required for basic search.
-**Source**: [openags/paper-search-mcp](https://github.com/openags/paper-search-mcp)
-**Use cases**: Academic research, literature reviews, finding citations, quant research papers.
+**API key**: None required.
+**Source**: Official MCP server from Anthropic/modelcontextprotocol
+**Use cases**: Storing project preferences, remembering stack decisions, building a knowledge base Claude can recall.
 
 ---
 
@@ -152,7 +152,7 @@ Access the world's largest library of ready-made scrapers. Instagram, LinkedIn, 
 ```json
 "apify": {
   "command": "npx",
-  "args": ["-y", "@apify/mcp-server"],
+  "args": ["-y", "@apify/actors-mcp-server"],
   "env": { "APIFY_TOKEN": "YOUR_APIFY_TOKEN" }
 }
 ```
@@ -174,19 +174,20 @@ Access the world's largest library of ready-made scrapers. Instagram, LinkedIn, 
 ## AI Models
 
 ### OpenAI — GPT-4o and Other Models
-Access OpenAI's models directly from Claude sessions. Useful for comparison, specific model capabilities, or when you need DALL-E image generation.
+Access OpenAI models from Claude sessions via the community `mcp-openai` server.
 
 ```json
-"openai": {
+"openai-compatible": {
   "command": "npx",
-  "args": ["-y", "@openai/mcp-server-openai"],
+  "args": ["-y", "mcp-openai"],
   "env": { "OPENAI_API_KEY": "YOUR_OPENAI_API_KEY" }
 }
 ```
 
 **Get key**: [platform.openai.com/api-keys](https://platform.openai.com/api-keys) — Pay-as-you-go
-**Models available**: gpt-4o, gpt-4o-mini, o1, o3, dall-e-3
+**Models available**: gpt-4o, gpt-4o-mini, dall-e-3
 **Use cases**: Image generation (DALL-E), getting a second opinion from GPT-4o, code comparison.
+**Note**: No official OpenAI MCP server is published. This uses the `mcp-openai` community package.
 
 ---
 
@@ -284,7 +285,7 @@ Copy this to your project as `.mcp.json` and replace `YOUR_*` with your actual k
     },
     "apify": {
       "command": "npx",
-      "args": ["-y", "@apify/mcp-server"],
+      "args": ["-y", "@apify/actors-mcp-server"],
       "env": { "APIFY_TOKEN": "YOUR_APIFY_TOKEN" }
     },
     "google-maps": {
@@ -292,9 +293,9 @@ Copy this to your project as `.mcp.json` and replace `YOUR_*` with your actual k
       "args": ["-y", "@modelcontextprotocol/server-google-maps"],
       "env": { "GOOGLE_MAPS_API_KEY": "YOUR_GOOGLE_MAPS_API_KEY" }
     },
-    "openai": {
+    "openai-compatible": {
       "command": "npx",
-      "args": ["-y", "@openai/mcp-server-openai"],
+      "args": ["-y", "mcp-openai"],
       "env": { "OPENAI_API_KEY": "YOUR_OPENAI_API_KEY" }
     },
     "supabase": {
@@ -310,9 +311,9 @@ Copy this to your project as `.mcp.json` and replace `YOUR_*` with your actual k
       "args": ["-y", "@sentry/mcp-server"],
       "env": { "SENTRY_AUTH_TOKEN": "YOUR_SENTRY_AUTH_TOKEN" }
     },
-    "paper-search": {
+    "memory": {
       "command": "npx",
-      "args": ["-y", "paper-search-mcp"]
+      "args": ["-y", "@modelcontextprotocol/server-memory"]
     }
   }
 }
