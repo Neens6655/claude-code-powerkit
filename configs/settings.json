@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "cleanupPeriodDays": 365,
+  "env": {
+    "BASH_MAX_OUTPUT_LENGTH": "150000"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(grep:*)",
+      "Bash(test:*)",
+      "Bash(bun install:*)",
+      "Bash(bun install)",
+      "Bash(bun run build:*)",
+      "Bash(bun remove:*)",
+      "Bash(git commit:*)",
+      "Bash(gh auth status)",
+      "WebSearch"
+    ],
+    "defaultMode": "allowEdits"
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if echo \"$ARGUMENTS\" | grep -qiE '\"command\"\\s*:\\s*\"(npm install|yarn install|yarn add)'; then echo 'BLOCKED: Use bun instead of npm/yarn. Run: bun install or bun add <package>' >&2; exit 2; fi",
+            "statusMessage": "Checking package manager..."
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "agent",
+            "if": "Bash(vercel deploy*)",
+            "prompt": "Run bun test or npm test. Return ok:true if all pass. Return ok:false with failure list if any fail. Do not proceed with deploy if tests fail.",
+            "timeout": 180,
+            "statusMessage": "Running pre-deploy test gate..."
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if echo \"$TOOL_INPUT\" | grep -qiE 'tsx|ts|jsx|css'; then echo 'BUILD_CHECK: Frontend file modified. Verify build before shipping.'; fi",
+            "statusMessage": "Checking if build verification needed..."
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'QUALITY_GATE: Did you run tests? Did Playwright screenshot? Is the build passing?'"
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "claude-code-setup@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true,
+    "playwright@claude-plugins-official": true,
+    "agent-sdk-dev@claude-plugins-official": true,
+    "claude-md-management@claude-plugins-official": true,
+    "code-simplifier@claude-plugins-official": true
+  }
+}
