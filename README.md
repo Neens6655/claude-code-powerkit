@@ -11,9 +11,7 @@ Clone, run one script, and get a fully loaded Claude Code environment — battle
 
 ---
 
-<!-- To record demo: install VHS (brew install vhs) then run: cd demo && vhs demo.tape -->
-<!-- Replace this comment with: ![Setup demo](demo/demo.gif) once recorded -->
-> **See it in action**: run `bash setup.sh` → Claude gains web search, browser control, GitHub access, and domain expertise in under 5 minutes.
+![Setup demo](demo/demo.svg)
 
 ---
 

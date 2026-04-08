@@ -1,0 +1,176 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" width="900" height="520">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;display=swap');
+      text { font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace; }
+
+      .bg { fill: #1e1e2e; }
+      .titlebar { fill: #313244; }
+      .dot-red { fill: #f38ba8; }
+      .dot-yellow { fill: #f9e2af; }
+      .dot-green { fill: #a6e3a1; }
+      .title-text { fill: #cdd6f4; font-size: 12px; }
+      .prompt { fill: #a6e3a1; font-size: 13px; font-weight: 700; }
+      .cmd { fill: #cdd6f4; font-size: 13px; }
+      .output { fill: #6c7086; font-size: 13px; }
+      .ok { fill: #a6e3a1; font-size: 13px; }
+      .warn { fill: #f9e2af; font-size: 13px; }
+      .dim { fill: #585b70; font-size: 13px; }
+      .highlight { fill: #89b4fa; font-size: 13px; }
+      .section { fill: #cba6f7; font-size: 13px; font-weight: 700; }
+      .cursor {
+        fill: #cdd6f4;
+        animation: blink 1s step-end infinite;
+      }
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+      }
+
+      .line1 { animation: fadein 0.1s 0.2s both; }
+      .line2 { animation: fadein 0.1s 0.8s both; }
+      .line3 { animation: fadein 0.1s 1.4s both; }
+      .line4 { animation: fadein 0.1s 2.0s both; }
+      .line5 { animation: fadein 0.1s 2.4s both; }
+      .line6 { animation: fadein 0.1s 2.8s both; }
+      .line7 { animation: fadein 0.1s 3.2s both; }
+      .line8 { animation: fadein 0.1s 3.6s both; }
+      .line9 { animation: fadein 0.1s 4.0s both; }
+      .line10 { animation: fadein 0.1s 4.4s both; }
+      .line11 { animation: fadein 0.1s 4.8s both; }
+      .line12 { animation: fadein 0.1s 5.2s both; }
+      .line13 { animation: fadein 0.1s 5.6s both; }
+      .line14 { animation: fadein 0.1s 6.0s both; }
+      .line15 { animation: fadein 0.1s 6.4s both; }
+      .line16 { animation: fadein 0.1s 6.8s both; }
+      .line17 { animation: fadein 0.1s 7.2s both; }
+      .line18 { animation: fadein 0.1s 7.6s both; }
+      .line19 { animation: fadein 0.1s 8.0s both; }
+      .line20 { animation: fadein 0.1s 8.4s both; }
+      .cursor-line { animation: fadein 0.1s 8.6s both; }
+
+      @keyframes fadein {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+    </style>
+  </defs>
+
+  <!-- Terminal window -->
+  <rect class="bg" width="900" height="520" rx="10"/>
+
+  <!-- Title bar -->
+  <rect class="titlebar" x="0" y="0" width="900" height="36" rx="10"/>
+  <rect class="titlebar" x="0" y="20" width="900" height="16"/>
+
+  <!-- Window dots -->
+  <circle class="dot-red" cx="20" cy="18" r="6"/>
+  <circle class="dot-yellow" cx="42" cy="18" r="6"/>
+  <circle class="dot-green" cx="64" cy="18" r="6"/>
+
+  <!-- Title -->
+  <text class="title-text" x="450" y="23" text-anchor="middle">bash — claude-code-powerkit</text>
+
+  <!-- Terminal content -->
+  <g transform="translate(24, 60)">
+
+    <!-- Line 1: git clone -->
+    <g class="line1">
+      <text class="prompt" x="0" y="0">❯</text>
+      <text class="cmd" x="18" y="0">git clone https://github.com/Neens6655/claude-code-powerkit.git</text>
+    </g>
+
+    <!-- Line 2: cloning output -->
+    <g class="line2">
+      <text class="output" x="0" y="22">Cloning into 'claude-code-powerkit'...</text>
+    </g>
+
+    <!-- Line 3: cd + setup -->
+    <g class="line3">
+      <text class="prompt" x="0" y="52">❯</text>
+      <text class="cmd" x="18" y="52">cd claude-code-powerkit &amp;&amp; bash setup.sh</text>
+    </g>
+
+    <!-- Line 4: setup header -->
+    <g class="line4">
+      <text class="dim" x="0" y="80">  Ziad StarterKit — Claude Code Setup</text>
+    </g>
+
+    <!-- Line 5: phase 1 -->
+    <g class="line5">
+      <text class="section" x="0" y="102">--- Phase 1: Checking prerequisites ---</text>
+    </g>
+    <g class="line5">
+      <text class="ok" x="0" y="120">[OK] node  </text>
+      <text class="ok" x="90" y="120">[OK] git  </text>
+      <text class="ok" x="175" y="120">[OK] bun</text>
+    </g>
+
+    <!-- Line 6: phase 2 -->
+    <g class="line6">
+      <text class="section" x="0" y="146">--- Phase 2: Installing Claude Code configs ---</text>
+    </g>
+    <g class="line6">
+      <text class="ok" x="0" y="164">[OK] Copied settings.json → ~/.claude/</text>
+    </g>
+
+    <!-- Line 7: phase 3 -->
+    <g class="line7">
+      <text class="section" x="0" y="190">--- Phase 3: Installing Playwright browsers ---</text>
+    </g>
+    <g class="line7">
+      <text class="ok" x="0" y="208">[OK] Playwright browsers installed (firefox + chromium)</text>
+    </g>
+
+    <!-- Line 8: phase 4 -->
+    <g class="line8">
+      <text class="section" x="0" y="234">--- Phase 4: Enabling plugins ---</text>
+    </g>
+    <g class="line8">
+      <text class="ok" x="0" y="252">[OK] playwright  </text>
+      <text class="ok" x="130" y="252">[OK] agent-sdk-dev  </text>
+      <text class="ok" x="295" y="252">[OK] frontend-design</text>
+    </g>
+
+    <!-- Line 9: phase 5 -->
+    <g class="line9">
+      <text class="section" x="0" y="278">--- Phase 5: Checking for unfilled API keys ---</text>
+    </g>
+    <g class="line9">
+      <text class="warn" x="0" y="296">  Fill in: BRAVE_API_KEY  GITHUB_PAT  EXA_API_KEY  (see MCP-SERVERS.md)</text>
+    </g>
+
+    <!-- Line 10: setup complete -->
+    <g class="line10">
+      <text class="section" x="0" y="322">--- Setup Complete ---</text>
+    </g>
+
+    <!-- Line 11: separator -->
+    <g class="line11">
+      <text class="dim" x="0" y="344">  Try it now (no API key needed):</text>
+    </g>
+
+    <!-- Line 12: test command -->
+    <g class="line12">
+      <text class="prompt" x="0" y="366">❯</text>
+      <text class="cmd" x="18" y="366">claude "take a Playwright screenshot of google.com"</text>
+    </g>
+
+    <!-- Line 13-14: claude response -->
+    <g class="line13">
+      <text class="highlight" x="0" y="388">✓ Screenshot captured → google.com.png (1440×900)</text>
+    </g>
+
+    <!-- Line 15: blank -->
+    <g class="line14">
+      <text class="dim" x="0" y="410">  Next: copy configs/mcp.json → .mcp.json, fill API keys, install skills</text>
+    </g>
+
+    <!-- Line 16: prompt + cursor -->
+    <g class="cursor-line">
+      <text class="prompt" x="0" y="432">❯</text>
+      <rect class="cursor" x="18" y="420" width="9" height="16" rx="1"/>
+    </g>
+
+  </g>
+</svg>
