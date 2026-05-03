@@ -1,174 +1,153 @@
 # Claude Code Powerkit
 
-[![Skills](https://img.shields.io/badge/skills-48%2B_installable-4A90D9?style=flat-square)](SKILLS.md)
-[![MCP Servers](https://img.shields.io/badge/MCP_servers-12_configured-27AE60?style=flat-square)](MCP-SERVERS.md)
-[![License](https://img.shields.io/badge/license-MIT-orange?style=flat-square)](LICENSE)
+[![Skills](https://img.shields.io/badge/skills-70%2B_installed-4A90D9?style=flat-square)](SKILLS.md)
+[![MCP Servers](https://img.shields.io/badge/MCP_servers-11_configured-27AE60?style=flat-square)](MCP-SERVERS.md)
+[![Agents](https://img.shields.io/badge/subagents-18_specialists-orange?style=flat-square)](https://github.com/VoltAgent/awesome-claude-code-subagents)
+[![License](https://img.shields.io/badge/license-MIT-lightgrey?style=flat-square)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/works_with-Claude_Code-blueviolet?style=flat-square)](https://docs.anthropic.com/en/docs/claude-code/overview)
 
-**Most developers spend their first week configuring Claude Code.** This kit skips that week.
+**One paste. Full setup. Skip the first week.**
 
-Clone, run one script, and get a fully loaded Claude Code environment — battle-tested hooks, 12 MCP servers, 48+ installable skills, and production lessons from 300+ hours of real usage.
-
----
-
-![Setup demo](demo/demo.svg)
+Install 11 MCP tools, 70+ skills, 18 specialist subagents, and production settings — in under 5 minutes. No terminal required.
 
 ---
 
-## What Changes After Setup
+## Quick Start (paste this into Claude Code)
 
-- Claude **blocks bad deploys** — hooks enforce tests, screenshots, package manager
-- Claude has **12 MCP tools** — browser control, web search, GitHub, scraping, AI search, databases
-- You get **48+ installable skills** — architecture, design, agents, content, automation
-- Claude **remembers your preferences** across sessions via auto-memory
-- Claude follows your **stack and conventions** via a pre-configured CLAUDE.md template
+Open **Claude Code** (Desktop app, VS Code extension, or web), then paste:
 
-## Quick Start
+```
+Set me up using https://raw.githubusercontent.com/Neens6655/claude-code-powerkit/master/BOOTSTRAP.md
+```
+
+Claude installs everything automatically. No terminal. No manual steps.
+
+**First test (no API key needed):**
+```
+Take a Playwright screenshot of google.com
+```
+
+---
+
+## What Gets Installed
+
+### 11 MCP Servers
+
+| Server | What it does | Free tier |
+|--------|-------------|-----------|
+| **Playwright** | Browser automation + screenshots | ✓ No key needed |
+| **Memory** | Remembers facts across sessions | ✓ No key needed |
+| **Brave Search** | Real-time web search | 2,000/mo free |
+| **GitHub** | Create PRs, manage repos, push code | ✓ Free |
+| **Perplexity** | AI-powered research and synthesis | Free tier |
+| **Firecrawl** | Convert any website to structured data | 500 pages/mo free |
+| **Apify** | 4,000+ pre-built web scrapers | Free tier |
+| **Google Maps** | Places, directions, geocoding | $200 free credit |
+| **OpenRouter** | 100+ LLMs from one key (GPT-4o, Gemini, Llama...) | Free models available |
+| **Replicate** | 50,000+ AI models — image, video, audio, 3D | Credits on signup |
+| **Gemini** | Google Gemini 2.5 Pro/Flash direct access | Generous free tier |
+
+### 70+ Skills
+
+| Category | Slash commands |
+|----------|---------------|
+| **Learn** | `/sensei` — teaches CS concepts before every code task |
+| **Plan** | `/prd` `/architect` `/kickoff` |
+| **Build** | `/app-builder` `/autopilot` `/loki-mode` |
+| **AI Council** | `/plato` — 5 advisors debate any decision |
+| **Design** | `/design` (ZGNAL Design System) `/canvas-design` `/data-storytelling` |
+| **Quality** | `/fix` `/explain` `/vibe-code-auditor` `/iterate` `/feedback-loop` |
+| **Writing** | `/beautiful-prose` `/marketing-psychology` |
+| **Visuals** | `/baoyu-image-gen` `/baoyu-infographic` |
+| **Code** | `/react-best-practices` `/tailwind-patterns` `/typescript-expert` |
+| **Business** | `/micro-saas-launcher` `/content-research-writer` `/tailored-resume-generator` |
+| **Productivity** | `/file-organizer` `/invoice-organizer` `/meeting-insights-analyzer` |
+| **Advanced** | `/dispatching-parallel-agents` `/mcp-builder` `/cheap-route` |
+
+### 18 Specialist Subagents (VoltAgent)
+
+Specialized agents Claude spawns for deep domain work:
+
+| Category | Agents |
+|----------|--------|
+| **Product & Business** | product-manager, content-marketer, technical-writer, ux-researcher, business-analyst, project-manager |
+| **Research** | research-analyst, project-idea-validator, competitive-analyst, market-researcher |
+| **Development** | frontend-developer, fullstack-developer, ui-designer |
+| **Quality** | debugger, code-reviewer, qa-expert, ai-writing-auditor |
+| **Content** | wordpress-master |
+
+### ZGNAL Design System
+
+Production-grade design tokens and component patterns. IBM Plex typography, Bauhaus aesthetic, 300+ CSS variables. Activate with `/design`.
+
+### Sensei Learning Mode
+
+`/sensei` — Before every code task, Claude identifies the key concept at play, asks you to predict the outcome, waits for your answer, then confirms or corrects. Learn CS fundamentals while building. Kill switch: add `#noteach` to any prompt.
+
+### AI Advisory Council (`/plato`)
+
+Spawn 5 advisors — Strategist, Designer, Customer, Contrarian, QA — to debate any product decision. Get a synthesis verdict in under 2 minutes.
+
+---
+
+## API Keys — Priority Order
+
+All free tiers are generous. Start with these:
+
+1. **Brave Search** → [api.search.brave.com](https://api.search.brave.com) — 2,000 free/mo
+2. **GitHub** → [github.com/settings/tokens](https://github.com/settings/tokens) — free
+3. **Firecrawl** → [firecrawl.dev](https://firecrawl.dev) — 500 pages/mo free
+4. **Gemini** → [aistudio.google.com/apikey](https://aistudio.google.com/apikey) — very generous free tier
+5. **OpenRouter** → [openrouter.ai/keys](https://openrouter.ai/keys) — free models available
+6. **Perplexity** → [perplexity.ai/settings/api](https://www.perplexity.ai/settings/api)
+7. **Replicate** → [replicate.com/account/api-tokens](https://replicate.com/account/api-tokens)
+8. **Apify** → [apify.com](https://apify.com) — free tier
+9. **Google Maps** → [console.cloud.google.com](https://console.cloud.google.com) — $200 credit
+
+---
+
+## Optional: 500+ App Integrations
+
+Connect Gmail, Slack, Notion, Stripe, HubSpot, Jira, Google Drive, and 490+ more via Composio:
+
+1. Sign up free at [composio.dev](https://composio.dev)
+2. Tell Claude: `"Install Composio app integrations from https://github.com/ComposioHQ/awesome-claude-skills"`
+
+---
+
+## Manual Setup (terminal users)
 
 ```bash
 git clone https://github.com/Neens6655/claude-code-powerkit.git
 cd claude-code-powerkit
-bash setup.sh        # macOS / Linux / WSL / Git Bash
+bash setup.sh
 ```
 
-**No API key needed for first test:**
-```bash
-claude "take a Playwright screenshot of google.com"
-```
-
-> **Windows users**: Run in [Git Bash](https://git-scm.com/downloads) or [WSL](https://learn.microsoft.com/en-us/windows/wsl/install). Native PowerShell is not supported.
-
-> **New to Claude Code?** [Install it first](https://docs.anthropic.com/en/docs/claude-code/overview), then come back here.
+Copy `configs/mcp.json` → `.mcp.json` in your project root, fill in API keys.
 
 ---
 
-## What You Get
-
-| File | What it does |
-|------|-------------|
-| `setup.sh` | One-command installer — copies configs, installs Playwright, enables plugins |
-| `configs/settings.json` | Hooks (block npm/yarn, flag frontend edits, quality gate on stop) + 6 plugins |
-| `configs/CLAUDE.md` | Project instructions template — customize to your stack |
-| `configs/mcp.json` | 12 MCP servers pre-configured (fill in your API keys) |
-| `configs/rules/` | Frontend + API coding rules Claude follows automatically |
-| [SKILLS.md](SKILLS.md) | 48+ installable skills with descriptions and exact install sources |
-| [REPOS.md](REPOS.md) | 40+ GitHub repos — skill collections, agents, MCP servers |
-| [MCP-SERVERS.md](MCP-SERVERS.md) | 12 MCP server setup guide + free API key sources |
-| [TIPS.md](TIPS.md) | 12 hard-won production lessons |
-
----
-
-## Skills (48+ installable)
-
-Skills are markdown files that give Claude deep domain expertise. Type `/skill-name` to activate.
-
-| Category | Example skills | Count |
-|----------|---------------|-------|
-| **Planning & Architecture** | `/prd` `/architect` `/kickoff` `/plato` | 5 |
-| **Code Quality** | `/verification-before-completion` `/vibe-code-auditor` `/fix` | 7 |
-| **Frontend & Design** | `/react-best-practices` `/tailwind-patterns` `/typescript-expert` `/design` | 11 |
-| **Agents & MCP** | `/claude-api` `/agent-sdk-dev` `/mcp-builder` `/voice-agents` `/loki-mode` | 8 |
-| **Workflow & Automation** | `/behavioral-modes` `/hierarchical-agent-memory` `/checkpoint` | 6 |
-| **Content & Media** | `/beautiful-prose` `/baoyu-image-gen` `/baoyu-infographic` `/data-storytelling` | 9 |
-| **Business & SaaS** | `/micro-saas-launcher` `/viral-generator-builder` `/marketing-psychology` | 4 |
-| **Utilities** | `/eval` `/feedback-loop` `/simplify` `/claude-md-management` | 6 |
-
-**[→ Full catalog with descriptions and install commands](SKILLS.md)**
-
----
-
-## MCP Servers (12 pre-configured)
-
-| Server | What it gives Claude | Free tier |
-|--------|---------------------|-----------|
-| **Playwright** | Browser control — screenshots, testing, scraping | Free |
-| **Brave Search** | Real-time web search | 2k/month |
-| **GitHub** | Create PRs, manage issues, push files | Unlimited |
-| **Exa** | AI-native semantic search | 1k/month |
-| **Perplexity** | Search + AI reasoning | ~$5/month |
-| **Firecrawl** | Structured web scraping | 500 pages/month |
-| **Apify** | 4,000+ scraping actors (social, e-commerce, maps) | $5/month |
-| **Google Maps** | Places, geocoding, routing | $200 credit/month |
-| **OpenAI** | GPT-4o and DALL-E access | Pay-as-you-go |
-| **Supabase** | Postgres + auth + storage | 2 projects |
-| **Sentry** | Production error monitoring | 5k events/month |
-| **Memory** | Persistent cross-session knowledge | Free |
-
-**[→ Setup guide with JSON configs and API key links](MCP-SERVERS.md)**
-
----
-
-## How Skills Work
-
-```bash
-# 1. Clone a skill repo
-git clone https://github.com/SHADOWPR0/beautiful_prose.git /tmp/beautiful_prose
-
-# 2. Copy SKILL.md to the right location
-mkdir -p ~/.claude/skills/beautiful-prose
-cp /tmp/beautiful_prose/SKILL.md ~/.claude/skills/beautiful-prose/SKILL.md
-
-# 3. Use it in any Claude session
-/beautiful-prose
-```
-
-Most skills live in mega-collection repos. See [REPOS.md](REPOS.md) for all sources, or [SKILLS.md](SKILLS.md) for exact install commands per skill.
-
----
-
-## Quick Setup Checklist
-
-#### Phase 1 — Foundation
-- [ ] Install Claude Code ([CLI, VS Code, or Desktop](https://docs.anthropic.com/en/docs/claude-code/overview))
-- [ ] Install Node.js 18+, git, and bun
-- [ ] Run: `bash setup.sh`
-- [ ] Immediate test (no key needed): `claude "take a Playwright screenshot of google.com"`
-
-#### Phase 2 — MCP Servers
-- [ ] Copy `configs/mcp.json` to your project as `.mcp.json`
-- [ ] Get free API keys — start with [Brave Search](https://brave.com/search/api) + [GitHub PAT](https://github.com/settings/tokens) (5 min)
-- [ ] Add `.mcp.json` to `.gitignore`
-
-#### Phase 3 — Skills
-- [ ] Open [SKILLS.md](SKILLS.md), install the top 10 from the priority list
-- [ ] Copy each `SKILL.md` to `~/.claude/skills/[name]/`
-
-#### Phase 4 — Verify
-- [ ] `claude "what skills and MCP tools do you have?"`
-- [ ] `claude "search the web for latest Claude Code news"`
-
----
-
-## Requirements
-
-- [Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview) — CLI, VS Code, or Desktop
-- Anthropic API key (`claude auth login`)
-- Node.js 18+, git
-- macOS, Linux, or Windows (Git Bash/WSL)
-
----
-
-## Repository Structure
+## What's in the Repo
 
 ```
 claude-code-powerkit/
-├── setup.sh              # One-command installer
-├── README.md             # This file
-├── SKILLS.md             # 48+ skills with install sources
-├── MCP-SERVERS.md        # 12 MCP server setup guide
-├── REPOS.md              # 40+ GitHub repos to explore
-├── TIPS.md               # 12 production lessons
-├── demo/
-│   └── demo.tape         # VHS script — run to generate demo GIF
-└── configs/
-    ├── settings.json     # Hooks + plugins
-    ├── CLAUDE.md         # Project instructions template
-    ├── mcp.json          # 12 MCP server configs
-    └── rules/
-        ├── frontend.md
-        └── api.md
+├── BOOTSTRAP.md          ← Paste URL into Claude to auto-install everything
+├── README.md
+├── setup.sh              ← Terminal alternative
+├── configs/
+│   ├── settings.json     ← Hooks + permissions + plugins
+│   ├── mcp.json          ← 11 MCP server template
+│   ├── CLAUDE.md         ← Project instructions template
+│   └── rules/            ← Frontend + API coding rules
+├── skills/               ← 26 curated skill files
+├── design-system/        ← ZGNAL Design System tokens + quick-start
+├── MCP-SERVERS.md        ← Detailed MCP setup guide
+├── SKILLS.md             ← Full skills catalog
+└── TIPS.md               ← 12 production lessons
 ```
 
 ---
 
-*Built by [ZGNAL Studio](https://github.com/Neens6655). 300+ hours of production Claude Code usage in one setup. If this saved you time, ⭐ star it and share it.*
+## License
+
+MIT. Fork it, share it, use it.

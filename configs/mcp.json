@@ -2,7 +2,11 @@
   "mcpServers": {
     "playwright": {
       "command": "npx",
-      "args": ["@playwright/mcp@latest", "--browser", "firefox"]
+      "args": ["@playwright/mcp@latest", "--browser", "chromium"]
+    },
+    "memory": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-memory"]
     },
     "brave-search": {
       "command": "npx",
@@ -16,13 +20,6 @@
       "args": ["-y", "@modelcontextprotocol/server-github"],
       "env": {
         "GITHUB_PERSONAL_ACCESS_TOKEN": "YOUR_GITHUB_PAT"
-      }
-    },
-    "exa": {
-      "command": "npx",
-      "args": ["-y", "exa-mcp-server"],
-      "env": {
-        "EXA_API_KEY": "YOUR_EXA_API_KEY"
       }
     },
     "perplexity": {
@@ -53,31 +50,27 @@
         "GOOGLE_MAPS_API_KEY": "YOUR_GOOGLE_MAPS_API_KEY"
       }
     },
-    "openai-compatible": {
+    "openrouter": {
       "command": "npx",
       "args": ["-y", "mcp-openai"],
       "env": {
-        "OPENAI_API_KEY": "YOUR_OPENAI_API_KEY"
+        "OPENAI_API_KEY": "YOUR_OPENROUTER_KEY",
+        "OPENAI_BASE_URL": "https://openrouter.ai/api/v1"
       }
     },
-    "supabase": {
+    "replicate": {
       "command": "npx",
-      "args": ["-y", "@supabase/mcp-server-supabase"],
+      "args": ["-y", "replicate-mcp"],
       "env": {
-        "SUPABASE_URL": "YOUR_SUPABASE_URL",
-        "SUPABASE_SERVICE_KEY": "YOUR_SUPABASE_SERVICE_KEY"
+        "REPLICATE_API_TOKEN": "YOUR_REPLICATE_API_TOKEN"
       }
     },
-    "sentry": {
+    "gemini": {
       "command": "npx",
-      "args": ["-y", "@sentry/mcp-server"],
+      "args": ["-y", "@yuhuangbin/mcp-gemini"],
       "env": {
-        "SENTRY_AUTH_TOKEN": "YOUR_SENTRY_AUTH_TOKEN"
+        "GEMINI_API_KEY": "YOUR_GEMINI_API_KEY"
       }
-    },
-    "memory": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-memory"]
     }
   }
 }
