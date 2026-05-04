@@ -116,32 +116,55 @@ Source: [github.com/ComposioHQ/awesome-claude-skills](https://github.com/Composi
 
 ---
 
-## VoltAgent Subagents (18 — auto-installed)
+## Subagents (70 — auto-installed to `~/.claude/agents/`)
+
+Specialist agents Claude spawns for deep domain work. 18 from VoltAgent (business/product) + 52 developer specialists bundled in this repo.
+
+### VoltAgent: Business & Product (18)
 
 Source: [github.com/VoltAgent/awesome-claude-code-subagents](https://github.com/VoltAgent/awesome-claude-code-subagents)
 
-These are specialist agents Claude spawns for deep domain work. They go to `~/.claude/agents/`.
+| Agent | What it does |
+|-------|-------------|
+| `frontend-developer` | React/Vue/Angular UI specialist |
+| `fullstack-developer` | End-to-end feature development |
+| `ui-designer` | Visual design and interaction |
+| `debugger` | Advanced debugging specialist |
+| `code-reviewer` | Code quality guardian |
+| `qa-expert` | Test automation specialist |
+| `ai-writing-auditor` | Detect and rewrite AI writing patterns |
+| `product-manager` | Product strategy and roadmap |
+| `content-marketer` | Content marketing specialist |
+| `technical-writer` | Technical documentation expert |
+| `ux-researcher` | User research and interviews |
+| `business-analyst` | Requirements and analysis |
+| `project-manager` | Project management and coordination |
+| `wordpress-master` | WordPress development + optimization |
+| `research-analyst` | Comprehensive research specialist |
+| `project-idea-validator` | Brutal go/no-go product validator |
+| `competitive-analyst` | Competitive intelligence |
+| `market-researcher` | Market analysis and consumer insights |
 
-| Agent | Category | What it does |
-|-------|----------|-------------|
-| `frontend-developer` | Development | React/Vue/Angular UI specialist |
-| `fullstack-developer` | Development | End-to-end feature development |
-| `ui-designer` | Development | Visual design and interaction |
-| `debugger` | Quality | Advanced debugging specialist |
-| `code-reviewer` | Quality | Code quality guardian |
-| `qa-expert` | Quality | Test automation specialist |
-| `ai-writing-auditor` | Quality | Detect and rewrite AI writing patterns |
-| `product-manager` | Business | Product strategy and roadmap |
-| `content-marketer` | Business | Content marketing specialist |
-| `technical-writer` | Business | Technical documentation expert |
-| `ux-researcher` | Business | User research and interviews |
-| `business-analyst` | Business | Requirements and analysis |
-| `project-manager` | Business | Project management and coordination |
-| `wordpress-master` | Business | WordPress development + optimization |
-| `research-analyst` | Research | Comprehensive research specialist |
-| `project-idea-validator` | Research | Brutal go/no-go product validator |
-| `competitive-analyst` | Research | Competitive intelligence |
-| `market-researcher` | Research | Market analysis and consumer insights |
+### Developer Specialists (52)
+
+Source: bundled in this repo's `agents/` directory. From [rshah515/claude-code-subagents](https://github.com/rshah515/claude-code-subagents).
+
+| Category | Agents |
+|----------|--------|
+| **Core** | `architect` `code-reviewer` `debugger` `refactorer` |
+| **Frameworks** | `nextjs-expert` `react-expert` `fastapi-expert` `django-expert` `vue-expert` `svelte-expert` `astro-expert` `nestjs-expert` |
+| **Languages** | `python-expert` `typescript-expert` `javascript-expert` `go-expert` `rust-expert` |
+| **Database** | `postgresql-expert` `mongodb-expert` `redis-expert` `database-architect` |
+| **Quality** | `playwright-expert` `security-auditor` `accessibility-expert` `e2e-testing-expert` `performance-engineer` |
+| **Infrastructure** | `aws-expert` `cicd-expert` `devops-engineer` `kubernetes-expert` `terraform-expert` |
+| **Docs** | `technical-writer` `technical-writer-dev` `api-documenter` `code-documenter` |
+| **Orchestrators** | `prd-writer` `tech-lead` `project-manager` |
+| **Specialized** | `ui-components-expert` `ux-designer` `seo-expert` `payment-expert` |
+| **Mobile** | `react-native-expert` `flutter-expert` |
+| **Data & AI** | `ai-engineer` `data-engineer` `ml-engineer` |
+| **Security** | `devsecops-engineer` `security-pentester` |
+| **API** | `graphql-expert` `websocket-expert` |
+| **Analytics** | `bi-expert` |
 
 ---
 

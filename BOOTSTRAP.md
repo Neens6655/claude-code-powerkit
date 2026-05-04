@@ -11,7 +11,7 @@
 - **11 MCP servers** — browser, search, GitHub, research, scraping, AI models, maps, memory
 - **30 curated skills** — /design, /plato, /sensei, /autopilot, /prd, /fix, /video-forge, and more
 - **26 Composio community skills** — writing, research, productivity, business tools
-- **18 VoltAgent subagents** — specialized agents for product, research, dev, QA
+- **70 subagents** — 18 VoltAgent (business/product) + 52 developer specialists (framework, language, database, infra)
 - **ZGNAL Design System** — production design tokens and component patterns
 - **Optimized settings** — hooks, permissions, quality gates
 
@@ -235,14 +235,13 @@ Write each to: `~/.claude/skills/[skill-name]/SKILL.md`
 
 ---
 
-## STEP 6 — INSTALL VOLTAGENT SUBAGENTS
+## STEP 6 — INSTALL SUBAGENTS
 
-Create `~/.claude/agents/` if it doesn't exist.
+Create `~/.claude/agents/` if it doesn't exist. Write each to: `~/.claude/agents/[agent-name].md`
 
-For each agent below, fetch from:
-`https://raw.githubusercontent.com/VoltAgent/awesome-claude-code-subagents/main/categories/[path]`
+### 6a — VoltAgent: Business & Product Agents (18 agents)
 
-Write each to: `~/.claude/agents/[agent-name].md`
+Fetch from: `https://raw.githubusercontent.com/VoltAgent/awesome-claude-code-subagents/main/categories/[path]`
 
 | Agent name | Fetch path | What it does |
 |------------|-----------|--------------|
@@ -264,6 +263,65 @@ Write each to: `~/.claude/agents/[agent-name].md`
 | project-idea-validator | 10-research-analysis/project-idea-validator.md | Brutal go/no-go product validator |
 | competitive-analyst | 10-research-analysis/competitive-analyst.md | Competitive intelligence specialist |
 | market-researcher | 10-research-analysis/market-researcher.md | Market analysis and consumer insights |
+
+### 6b — Developer Specialist Agents (52 agents)
+
+Fetch from: `https://raw.githubusercontent.com/Neens6655/claude-code-powerkit/master/agents/[filename]`
+
+| Agent name | Filename | What it does |
+|------------|----------|--------------|
+| architect | architect.md | System design, architecture decisions |
+| code-reviewer | code-reviewer.md | Deep code quality review |
+| debugger | debugger.md | Root cause debugging specialist |
+| refactorer | refactorer.md | Code cleanup and restructuring |
+| nextjs-expert | nextjs-expert.md | Next.js 15, App Router, Server Components |
+| react-expert | react-expert.md | React 19, hooks, performance |
+| fastapi-expert | fastapi-expert.md | FastAPI, Python async APIs |
+| django-expert | django-expert.md | Django, ORM, REST framework |
+| vue-expert | vue-expert.md | Vue 3, Composition API |
+| svelte-expert | svelte-expert.md | SvelteKit, Svelte 5 |
+| astro-expert | astro-expert.md | Astro, islands architecture |
+| nestjs-expert | nestjs-expert.md | NestJS, TypeScript backend |
+| python-expert | python-expert.md | Python 3.12+, modern patterns |
+| typescript-expert | typescript-expert.md | TypeScript strict mode, advanced types |
+| javascript-expert | javascript-expert.md | Modern JS, ES2024, patterns |
+| go-expert | go-expert.md | Go, concurrency, idiomatic patterns |
+| rust-expert | rust-expert.md | Rust, ownership, systems programming |
+| postgresql-expert | postgresql-expert.md | PostgreSQL, query optimization, indexes |
+| mongodb-expert | mongodb-expert.md | MongoDB, aggregations, schema design |
+| redis-expert | redis-expert.md | Redis, caching strategies, pub/sub |
+| database-architect | database-architect.md | Database design, normalization, scaling |
+| playwright-expert | playwright-expert.md | Playwright E2E testing |
+| security-auditor | security-auditor.md | Security review, OWASP |
+| accessibility-expert | accessibility-expert.md | WCAG, screen readers, a11y |
+| e2e-testing-expert | e2e-testing-expert.md | End-to-end test strategy |
+| performance-engineer | performance-engineer.md | Web performance, Core Web Vitals |
+| aws-expert | aws-expert.md | AWS services, IAM, deployment |
+| cicd-expert | cicd-expert.md | CI/CD pipelines, GitHub Actions |
+| devops-engineer | devops-engineer.md | DevOps practices, containers |
+| kubernetes-expert | kubernetes-expert.md | Kubernetes, Helm, orchestration |
+| terraform-expert | terraform-expert.md | Terraform, IaC, cloud provisioning |
+| technical-writer-dev | technical-writer-dev.md | Technical documentation for devs |
+| api-documenter | api-documenter.md | API documentation, OpenAPI |
+| code-documenter | code-documenter.md | Inline docs, JSDoc, docstrings |
+| prd-writer | prd-writer.md | Product requirements documents |
+| tech-lead | tech-lead.md | Technical leadership, decisions |
+| ui-components-expert | ui-components-expert.md | UI component library design |
+| ux-designer | ux-designer.md | UX flows, user experience |
+| seo-expert | seo-expert.md | SEO implementation, Core Web Vitals |
+| payment-expert | payment-expert.md | Stripe, payment flows, PCI |
+| react-native-expert | react-native-expert.md | React Native, Expo, mobile |
+| flutter-expert | flutter-expert.md | Flutter, Dart, cross-platform |
+| ai-engineer | ai-engineer.md | AI integration, LLM APIs |
+| data-engineer | data-engineer.md | Data pipelines, ETL, warehouses |
+| ml-engineer | ml-engineer.md | ML models, training, deployment |
+| devsecops-engineer | devsecops-engineer.md | Security in CI/CD pipelines |
+| security-pentester | security-pentester.md | Penetration testing, vulnerabilities |
+| graphql-expert | graphql-expert.md | GraphQL schema, resolvers, Apollo |
+| websocket-expert | websocket-expert.md | WebSockets, real-time, Socket.io |
+| bi-expert | bi-expert.md | Business intelligence, dashboards |
+| technical-writer | technical-writer.md | Technical writing, docs |
+| project-manager | project-manager.md | Project planning, Agile, delivery |
 
 ---
 
@@ -330,7 +388,7 @@ Then print this summary:
   ✓ 11 MCP servers configured
   ✓ 30 curated skills installed
   ✓ 24 Composio community skills installed
-  ✓ 18 VoltAgent subagents installed
+  ✓ 70 subagents installed (18 VoltAgent + 52 developer specialists)
   ✓ Settings + hooks active
   ✓ ZGNAL Design System loaded
   ✓ Global CLAUDE.md written

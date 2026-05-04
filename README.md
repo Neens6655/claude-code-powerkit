@@ -2,13 +2,13 @@
 
 [![Skills](https://img.shields.io/badge/skills-70%2B_installed-4A90D9?style=flat-square)](SKILLS.md)
 [![MCP Servers](https://img.shields.io/badge/MCP_servers-11_configured-27AE60?style=flat-square)](MCP-SERVERS.md)
-[![Agents](https://img.shields.io/badge/subagents-18_specialists-orange?style=flat-square)](https://github.com/VoltAgent/awesome-claude-code-subagents)
+[![Agents](https://img.shields.io/badge/subagents-70_specialists-orange?style=flat-square)](SKILLS.md)
 [![License](https://img.shields.io/badge/license-MIT-lightgrey?style=flat-square)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/works_with-Claude_Code-blueviolet?style=flat-square)](https://docs.anthropic.com/en/docs/claude-code/overview)
 
 **One paste. Full setup. Skip the first week.**
 
-Install 11 MCP tools, 70+ skills, 18 specialist subagents, and production settings — in under 5 minutes. No terminal required.
+Install 11 MCP tools, 30 skills, 24 community skills, and 70 specialist subagents — in under 5 minutes. No terminal required.
 
 ---
 
@@ -157,17 +157,24 @@ Take a Playwright screenshot of google.com
 | **Productivity** | `/file-organizer` `/invoice-organizer` `/meeting-insights-analyzer` |
 | **Advanced** | `/dispatching-parallel-agents` `/mcp-builder` `/cheap-route` |
 
-### 18 Specialist Subagents (VoltAgent)
+### 70 Specialist Subagents
 
-Specialized agents Claude spawns for deep domain work:
+Agents Claude spawns automatically for deep domain work — installed to `~/.claude/agents/`:
 
 | Category | Agents |
 |----------|--------|
-| **Product & Business** | product-manager, content-marketer, technical-writer, ux-researcher, business-analyst, project-manager |
-| **Research** | research-analyst, project-idea-validator, competitive-analyst, market-researcher |
-| **Development** | frontend-developer, fullstack-developer, ui-designer |
-| **Quality** | debugger, code-reviewer, qa-expert, ai-writing-auditor |
-| **Content** | wordpress-master |
+| **Business & Product** | product-manager, content-marketer, ux-researcher, business-analyst, project-manager, research-analyst, project-idea-validator, competitive-analyst, market-researcher, wordpress-master |
+| **Core Dev** | architect, code-reviewer, debugger, refactorer, tech-lead, prd-writer |
+| **Frameworks** | nextjs-expert, react-expert, fastapi-expert, django-expert, vue-expert, svelte-expert, astro-expert, nestjs-expert |
+| **Languages** | python-expert, typescript-expert, javascript-expert, go-expert, rust-expert |
+| **Database** | postgresql-expert, mongodb-expert, redis-expert, database-architect |
+| **Infrastructure** | aws-expert, cicd-expert, devops-engineer, kubernetes-expert, terraform-expert |
+| **Quality** | playwright-expert, security-auditor, accessibility-expert, e2e-testing-expert, performance-engineer, qa-expert |
+| **Mobile** | react-native-expert, flutter-expert |
+| **Data & AI** | ai-engineer, data-engineer, ml-engineer |
+| **Security** | devsecops-engineer, security-pentester |
+| **Design & UX** | ui-designer, ui-components-expert, ux-designer, frontend-developer, fullstack-developer |
+| **Content** | ai-writing-auditor, technical-writer, seo-expert |
 
 ### ZGNAL Design System
 
