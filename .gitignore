@@ -13,3 +13,7 @@ node_modules/
 .env
 .env.local
 *.key
+
+# MCP configs may contain real API keys — never commit
+.mcp.json
+claude_desktop_config.json
