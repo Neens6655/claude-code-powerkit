@@ -69,7 +69,7 @@ Projects built with this kit in production:
 | Repo | What It Does | Stack |
 |------|-------------|-------|
 | [Neens6655/plato](https://github.com/Neens6655/plato) | Multi-advisor AI council — 8 advisors debate and synthesize verdicts on any product, strategy, or code | Claude API + custom orchestration |
-| [Neens6655/zgnal-design-system](https://github.com/Neens6655/zgnal-design-system) | Z-Engine V2 + Bauhaus design system — 300+ design tokens, component docs, Pine trading scripts | CSS + JSON tokens |
+| [Neens6655/zgnal-design-system](https://github.com/Neens6655/zgnal-design-system) | Z-Engine V2 + Bauhaus design system — 300+ design tokens, component docs | CSS + JSON tokens |
 | [Neens6655/zignal-infographic-lab](https://github.com/Neens6655/zignal-infographic-lab) | AI infographic engine — 18 visual styles, 7-stage pipeline, Perplexity-powered research | Next.js + Gemini + Satori |
 | [Neens6655/z-gallery](https://github.com/Neens6655/z-gallery) | SVG generative art gallery — algorithmic art engine with 20+ styles | Vanilla HTML + SVG |
 
