@@ -17,7 +17,7 @@ Then in Claude: `/beautiful-prose`
 
 ---
 
-## Curated Skills (26 — auto-installed from this repo)
+## Curated Skills (30 — auto-installed from this repo)
 
 ### 🧠 Learning
 | Skill | Command | What it does |
@@ -44,6 +44,9 @@ Then in Claude: `/beautiful-prose`
 | Design | `/design` | ZGNAL Design System — Bauhaus aesthetic, IBM Plex, 300+ tokens. |
 | Canvas Design | `/canvas-design` | Algorithmic visual art to PNG/PDF. |
 | Data Storytelling | `/data-storytelling` | Transform data into compelling narrative + visualization. |
+| Video Forge | `/video-forge` | TTS-narrated video pipeline: script → voice clone → timing gate → Remotion render → localize. |
+| Algorithmic Art | `/algorithmic-art` | Generative art with p5.js — particles, geometry, noise fields. |
+| Scroll Experience | `/scroll-experience` | Cinematic scroll storytelling with Lenis + Framer Motion / GSAP. |
 
 ### ✅ Quality & Debug
 | Skill | Command | What it does |
