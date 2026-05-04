@@ -1,14 +1,14 @@
 # Claude Code Powerkit
 
 [![Skills](https://img.shields.io/badge/skills-70%2B_installed-4A90D9?style=flat-square)](SKILLS.md)
-[![MCP Servers](https://img.shields.io/badge/MCP_servers-11_configured-27AE60?style=flat-square)](MCP-SERVERS.md)
+[![MCP Servers](https://img.shields.io/badge/MCP_servers-10_configured-27AE60?style=flat-square)](MCP-SERVERS.md)
 [![Agents](https://img.shields.io/badge/subagents-70_specialists-orange?style=flat-square)](SKILLS.md)
 [![License](https://img.shields.io/badge/license-MIT-lightgrey?style=flat-square)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/works_with-Claude_Code-blueviolet?style=flat-square)](https://docs.anthropic.com/en/docs/claude-code/overview)
 
 **One paste. Full setup. Skip the first week.**
 
-Install 11 MCP tools, 30 skills, 24 community skills, and 70 specialist subagents — in under 5 minutes. No terminal required.
+Install 10 MCP tools, 30 skills, 24 community skills, and 70 specialist subagents — in under 5 minutes. No terminal required.
 
 ---
 
@@ -124,7 +124,7 @@ Take a Playwright screenshot of google.com
 
 ## What Gets Installed
 
-### 11 MCP Servers
+### 10 MCP Servers
 
 | Server | What it does | Free tier |
 |--------|-------------|-----------|
@@ -136,9 +136,8 @@ Take a Playwright screenshot of google.com
 | **Firecrawl** | Convert any website to structured data | 500 pages/mo free |
 | **Apify** | 4,000+ pre-built web scrapers | Free tier |
 | **Google Maps** | Places, directions, geocoding | $200 free credit |
-| **OpenRouter** | 100+ LLMs from one key (GPT-4o, Gemini, Llama...) | Free models available |
+| **OpenRouter** | 100+ LLMs — GPT-4o, Gemini 2.5, Llama, and more | Free models available |
 | **Replicate** | 50,000+ AI models — image, video, audio, 3D | Credits on signup |
-| **Gemini** | Google Gemini 2.5 Pro/Flash direct access | Generous free tier |
 
 ### 70+ Skills
 
@@ -148,7 +147,7 @@ Take a Playwright screenshot of google.com
 | **Plan** | `/prd` `/architect` `/kickoff` |
 | **Build** | `/app-builder` `/autopilot` `/loki-mode` |
 | **AI Council** | `/plato` — 5 advisors debate any decision |
-| **Design** | `/design` (ZGNAL Design System) `/canvas-design` `/data-storytelling` |
+| **Design** | `/design` (built-in style system — no setup) `/canvas-design` `/data-storytelling` |
 | **Quality** | `/fix` `/explain` `/vibe-code-auditor` `/iterate` `/feedback-loop` |
 | **Writing** | `/beautiful-prose` `/marketing-psychology` |
 | **Visuals** | `/baoyu-image-gen` `/baoyu-infographic` |

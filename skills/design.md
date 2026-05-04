@@ -3,9 +3,11 @@ name: design
 description: Apply the ZGNAL Design System to any UI. Generates component code, CSS tokens, and layout decisions in a specific visual style. 7 style modes: bauhaus (default), editorial, brutalist, agency, glass, dark, custom. Use before building any frontend, or to redesign existing components. Produces pixel-ready code with IBM Plex typography, precise spacing, and WCAG AA accessible colors.
 ---
 
-# /design — ZGNAL Design System
+# /design — Built-in Design System
 
 Apply a consistent, professional visual system to any UI component or page.
+
+> **What is ZGNAL?** It's the built-in design system — consistent fonts, colors, and layout rules so your projects look professional out of the box. No setup or configuration needed. Just run `/design` and it applies automatically.
 
 ## Usage
 

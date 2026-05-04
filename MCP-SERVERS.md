@@ -152,19 +152,9 @@ Get token: [replicate.com/account/api-tokens](https://replicate.com/account/api-
 }
 ```
 
-### Gemini — Google AI Direct
-Gemini 2.5 Pro and Flash. Best-in-class reasoning and long context.
-Generous free tier. Get key: [aistudio.google.com/apikey](https://aistudio.google.com/apikey)
-
-```json
-"gemini": {
-  "command": "npx",
-  "args": ["-y", "@yuhuangbin/mcp-gemini"],
-  "env": { "GEMINI_API_KEY": "YOUR_KEY" }
-}
-```
-
 ---
+
+> **Gemini access:** Use OpenRouter (already included) — it gives access to Gemini 2.5 Pro and Flash without a separate key or package. Set your OpenRouter key and ask Claude to use `google/gemini-2.5-pro` or `google/gemini-2.5-flash`.
 
 ## Recommended Setup Order
 
@@ -172,9 +162,8 @@ Generous free tier. Get key: [aistudio.google.com/apikey](https://aistudio.googl
 2. **Memory** — no key, start remembering preferences
 3. **Brave Search** — 5 min to get key, unlocks web search
 4. **GitHub** — 5 min, unlocks repo automation
-5. **Gemini** — 2 min, generous free tier, huge value
+5. **OpenRouter** — one key for 100+ LLMs including Gemini 2.5, GPT-4o, Llama
 6. **Firecrawl** — scraping and research
-7. **OpenRouter** — when you need multiple LLMs or cost routing
-8. Others as needed
+7. Others as needed
 
 These first 4 cover 80% of use cases.

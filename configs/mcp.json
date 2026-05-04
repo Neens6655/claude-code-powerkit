@@ -65,12 +65,5 @@
         "REPLICATE_API_TOKEN": "YOUR_REPLICATE_API_TOKEN"
       }
     },
-    "gemini": {
-      "command": "npx",
-      "args": ["-y", "@yuhuangbin/mcp-gemini"],
-      "env": {
-        "GEMINI_API_KEY": "YOUR_GEMINI_API_KEY"
-      }
-    }
   }
 }

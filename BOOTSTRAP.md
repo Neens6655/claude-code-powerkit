@@ -8,7 +8,7 @@
 
 ## What's being installed
 
-- **11 MCP servers** — browser, search, GitHub, research, scraping, AI models, maps, memory
+- **10 MCP servers** — browser, search, GitHub, research, scraping, AI models, maps, memory
 - **30 curated skills** — /design, /plato, /sensei, /autopilot, /prd, /fix, /video-forge, and more
 - **26 Composio community skills** — writing, research, productivity, business tools
 - **70 subagents** — 18 VoltAgent (business/product) + 52 developer specialists (framework, language, database, infra)
@@ -61,12 +61,36 @@ Write to `~/.claude/settings.json` (merge if file already exists — don't overw
     ]
   },
   "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if echo \"$ARGUMENTS\" | grep -qiE '\"command\"\\s*:\\s*\"(npm (install|add)|yarn (install|add))'; then echo 'BLOCKED: Use bun instead of npm/yarn. Run: bun install or bun add <package>' >&2; exit 2; fi",
+            "statusMessage": "Checking package manager..."
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if echo \"$TOOL_INPUT\" | grep -qiE '\\.tsx|\\.ts|\\.jsx|\\.css'; then echo 'BUILD_CHECK: Frontend file modified. Verify build before shipping.'; fi",
+            "statusMessage": "Checking if build verification needed..."
+          }
+        ]
+      }
+    ],
     "Stop": [
       {
         "hooks": [
           {
             "type": "command",
-            "command": "echo 'Tip: screenshot before ship, test before deploy.'"
+            "command": "echo 'QUALITY_GATE: Did you run tests? Did Playwright screenshot? Is the build passing?'"
           }
         ]
       }
@@ -144,10 +168,10 @@ Detect platform and write to the correct Claude Desktop config file.
       "args": ["-y", "replicate-mcp"],
       "env": { "REPLICATE_API_TOKEN": "YOUR_REPLICATE_TOKEN" }
     },
-    "gemini": {
+    "replicate": {
       "command": "npx",
-      "args": ["-y", "@yuhuangbin/mcp-gemini"],
-      "env": { "GEMINI_API_KEY": "YOUR_GEMINI_KEY" }
+      "args": ["-y", "replicate-mcp"],
+      "env": { "REPLICATE_API_TOKEN": "YOUR_REPLICATE_TOKEN" }
     }
   }
 }
@@ -385,38 +409,62 @@ Then print this summary:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 📦 INSTALLED
-  ✓ 11 MCP servers configured
-  ✓ 30 curated skills installed
-  ✓ 24 Composio community skills installed
-  ✓ 70 subagents installed (18 VoltAgent + 52 developer specialists)
-  ✓ Settings + hooks active
-  ✓ ZGNAL Design System loaded
+  ✓ 10 MCP servers configured
+  ✓ 30 curated skills
+  ✓ 24 Composio community skills
+  ✓ 70 subagents (18 VoltAgent + 52 developer specialists)
+  ✓ npm/yarn block hook active — bun enforced
+  ✓ ZGNAL Design System (built-in style system, no setup needed)
   ✓ Global CLAUDE.md written
 
-🔑 API KEYS NEEDED (add to your Claude Desktop config):
-  ✓ Playwright    — no key, works now
-  ✓ Memory        — no key, works now
-  ○ Brave Search  → https://api.search.brave.com       (2,000/mo free)
-  ○ GitHub        → https://github.com/settings/tokens  (free)
-  ○ Perplexity    → https://perplexity.ai/settings/api
-  ○ Firecrawl     → https://firecrawl.dev               (500 pages/mo free)
-  ○ Apify         → https://apify.com                   (free tier)
-  ○ Google Maps   → https://console.cloud.google.com    ($200 credit)
-  ○ OpenRouter    → https://openrouter.ai/keys          (free models available)
-  ○ Replicate     → https://replicate.com/account/api-tokens
-  ○ Gemini        → https://aistudio.google.com/apikey  (generous free tier)
+🚀 START HERE — try these in order:
 
-🚀 TRY THESE NOW:
-  "Take a screenshot of google.com"    — works immediately
-  /sensei                               — activate inline learning mode
-  /prd                                  — write requirements for a new idea
-  /design                               — generate UI with the design system
-  /plato [your idea]                    — get multi-advisor feedback
-  /autopilot                            — describe an app, Claude builds + ships it
+  Step 1 — Prove it works right now (no key needed):
+    "Take a Playwright screenshot of google.com"
 
-📚 OPTIONAL: 500+ App Integrations (Gmail, Slack, Notion, Stripe...)
-  Sign up free at composio.dev, then:
-  "Install Composio app integrations from https://github.com/ComposioHQ/awesome-claude-skills"
+  Step 2 — Plan your first project [BEGINNER]:
+    /prd
+    → Claude interviews you and writes a full requirements doc
+
+  Step 3 — See the design system [BEGINNER]:
+    /design a landing page for my project
+    → React + Tailwind UI, production-ready, professional style
+
+  Step 4 — Get expert feedback on your idea [BEGINNER]:
+    /plato quick [describe your idea in one sentence]
+    → 3 advisors debate it in under 2 minutes
+
+  When you're ready to build:
+    /kickoff    — architect + build + review in one flow [BEGINNER]
+    /autopilot  — describe it, Claude ships it [INTERMEDIATE]
+    /sensei     — turns every code task into a CS lesson [BEGINNER]
+
+  Advanced (require additional deps or paid keys):
+    /video-forge  — TTS video pipeline [ADVANCED — needs ffmpeg + Remotion + voice API]
+    /loki-mode    — autonomous multi-agent startup system [ADVANCED]
+
+🔑 API KEYS — add to unlock more tools
+
+  ✅ FREE NOW — works without any key:
+      Playwright  — screenshots + browser automation (already working)
+      Memory      — remembers facts across sessions (already working)
+
+  🔓 GET THESE FIRST — 5 min each, free tier:
+      Brave Search  → https://api.search.brave.com        2,000 searches/mo free
+      GitHub        → https://github.com/settings/tokens   free, select "repo" scope
+
+  ⚡ ADD WHEN YOU NEED THEM:
+      Firecrawl   → https://firecrawl.dev                500 pages/mo free
+      OpenRouter  → https://openrouter.ai/keys           100+ LLMs incl. Gemini + GPT-4o
+      Perplexity  → https://perplexity.ai/settings/api
+      Replicate   → https://replicate.com/account/api-tokens
+      Apify       → https://apify.com                    free tier
+      Google Maps → https://console.cloud.google.com     $200 credit
+
+  Where to add them:
+    macOS:   ~/Library/Application Support/Claude/claude_desktop_config.json
+    Windows: %APPDATA%\Claude\claude_desktop_config.json
+    Replace each YOUR_*_KEY placeholder with the real key.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```

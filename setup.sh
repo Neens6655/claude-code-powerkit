@@ -7,6 +7,14 @@ set -e
 # Terminal alternative to the BOOTSTRAP.md paste method.
 # Run in: macOS Terminal, Linux shell, Git Bash, or WSL
 # NOT supported: Windows PowerShell or CMD — use Git Bash instead.
+#
+# ⚠ PARTIAL INSTALL — this script installs skills, settings, and CLAUDE.md.
+# It does NOT install:
+#   - 70 subagents (18 VoltAgent + 52 developer specialists)
+#   - 24 Composio community skills
+#
+# For the full install (recommended), paste this URL into Claude Code instead:
+#   https://raw.githubusercontent.com/Neens6655/claude-code-powerkit/master/BOOTSTRAP.md
 
 echo ""
 echo "  Claude Code Powerkit"
@@ -160,32 +168,40 @@ echo "  ────────────────────────
 echo "  ✅  CLAUDE CODE POWERKIT — SETUP COMPLETE"
 echo "  ──────────────────────────────────────────────────"
 echo ""
-echo "  Installed:"
+echo "  Installed (partial — terminal path):"
 echo "    ✓ Playwright browser (screenshots work now)"
 echo "    ✓ 30 curated skills in ~/.claude/skills/"
-echo "    ✓ Claude Code settings + hooks"
+echo "    ✓ Claude Code settings + npm/yarn block hook"
 echo "    ✓ Global CLAUDE.md"
 echo ""
-echo "  Next: add your MCP config to Claude Desktop"
+echo "  NOT installed by this script:"
+echo "    ✗ 70 subagents (VoltAgent + developer specialists)"
+echo "    ✗ 24 Composio community skills"
+echo "    → For the full install, paste the BOOTSTRAP.md URL into Claude Code instead"
 echo ""
-echo "    macOS:   ~/Library/Application Support/Claude/claude_desktop_config.json"
-echo "    Windows: %APPDATA%\\Claude\\claude_desktop_config.json"
+echo "  Next: copy MCP config to Claude Desktop"
 echo ""
-echo "    Template: $SCRIPT_DIR/configs/mcp.json"
-echo "    (fill in YOUR_*_KEY placeholders with real API keys)"
+echo "    macOS:   cp $SCRIPT_DIR/configs/mcp.json"
+echo "             ~/Library/Application Support/Claude/claude_desktop_config.json"
+echo "    Windows: copy to %APPDATA%\\Claude\\claude_desktop_config.json"
+echo "    Then replace YOUR_*_KEY placeholders with real keys."
 echo ""
-echo "  API keys needed (all have free tiers):"
-echo "    Brave Search  → https://api.search.brave.com"
-echo "    GitHub        → https://github.com/settings/tokens"
+echo "  API keys — get these first (free, 5 min each):"
+echo "    Brave Search  → https://api.search.brave.com       (2,000/mo free)"
+echo "    GitHub        → https://github.com/settings/tokens  (free)"
+echo ""
+echo "  Add when needed:"
+echo "    OpenRouter    → https://openrouter.ai/keys          (100+ LLMs incl. Gemini)"
 echo "    Firecrawl     → https://firecrawl.dev"
-echo "    Gemini        → https://aistudio.google.com/apikey"
-echo "    OpenRouter    → https://openrouter.ai/keys"
 echo "    Perplexity    → https://perplexity.ai/settings/api"
 echo "    Replicate     → https://replicate.com/account/api-tokens"
 echo ""
-echo "  Try now in Claude Code:"
-echo "    /sensei              — activate learning mode"
+echo "  Start here [BEGINNER]:"
 echo "    /prd                 — write requirements for an idea"
 echo "    /design              — generate UI with the design system"
-echo "    /plato [your idea]   — get 5-advisor feedback"
+echo "    /plato quick [idea]  — 3-advisor feedback in 2 min"
+echo ""
+echo "  When ready to build:"
+echo "    /kickoff             — architect + build + review"
+echo "    /sensei              — learn CS while building"
 echo ""
