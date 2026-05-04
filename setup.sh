@@ -2,143 +2,190 @@
 set -e
 
 # ============================================
-# Ziad StarterKit - Claude Code Setup Script
+# Claude Code Powerkit — Setup Script
 # ============================================
+# Terminal alternative to the BOOTSTRAP.md paste method.
 # Run in: macOS Terminal, Linux shell, Git Bash, or WSL
-# NOT supported: Windows PowerShell, CMD
+# NOT supported: Windows PowerShell or CMD — use Git Bash instead.
 
 echo ""
-echo "  Ziad StarterKit"
-echo "  Claude Code Setup"
-echo "  -----------------"
+echo "  Claude Code Powerkit"
+echo "  Setup Script"
+echo "  ──────────────────────────────────────"
 echo ""
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 CLAUDE_DIR="$HOME/.claude"
+MISSING_REQUIRED=false
+MISSING_OPTIONAL=false
 
-# ---- Phase 1: Prerequisites ----
-echo "--- Phase 1: Checking prerequisites ---"
+# ── Phase 1: Required prerequisites ──────────────────────────────────────────
+echo "Phase 1: Checking required prerequisites"
+echo ""
 
-MISSING=false
-
-check_cmd() {
+check_required() {
   if command -v "$1" &>/dev/null; then
-    echo "  [OK] $1"
+    printf "  ✓ %-12s %s\n" "$1" "$(${1} --version 2>&1 | head -1)"
   else
-    echo "  [MISSING] $1"
-    MISSING=true
+    printf "  ✗ %-12s MISSING\n" "$1"
+    MISSING_REQUIRED=true
   fi
 }
 
-check_cmd node
-check_cmd git
+check_optional() {
+  if command -v "$1" &>/dev/null; then
+    printf "  ✓ %-12s %s\n" "$1" "$(${1} --version 2>&1 | head -1)"
+  else
+    printf "  - %-12s not installed (optional)\n" "$1"
+    MISSING_OPTIONAL=true
+  fi
+}
 
-# Try to install bun if missing
-if ! command -v bun &>/dev/null; then
-  echo "  [MISSING] bun - attempting install..."
-  npm install -g bun 2>/dev/null && echo "  [OK] bun installed" || {
-    echo "  [WARN] Could not auto-install bun. Run: npm install -g bun"
-    MISSING=true
-  }
-else
-  echo "  [OK] bun"
-fi
+check_required node
+check_required npx
+check_required git
 
-if [ "$MISSING" = true ]; then
+echo ""
+echo "  Optional tools:"
+check_optional bun
+check_optional gh
+check_optional python3
+check_optional ffmpeg
+
+if [ "$MISSING_REQUIRED" = true ]; then
   echo ""
-  echo "  Some prerequisites are missing. Install them first:"
-  echo "    Node.js: https://nodejs.org"
-  echo "    Git:     https://git-scm.com"
-  echo "    bun:     npm install -g bun"
+  echo "  ✗ Required tools are missing. Install them first:"
+  echo ""
+  echo "  macOS:"
+  echo "    brew install node git"
+  echo ""
+  echo "  Windows (PowerShell as Admin):"
+  echo "    winget install OpenJS.NodeJS.LTS"
+  echo "    winget install Git.Git"
+  echo ""
+  echo "  Linux (Ubuntu/Debian):"
+  echo "    curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -"
+  echo "    sudo apt-get install -y nodejs git"
+  echo ""
+  echo "  Then re-run this script."
   exit 1
 fi
 
-# ---- Phase 2: Copy configs ----
+# Install bun if missing (it's recommended)
+if ! command -v bun &>/dev/null; then
+  echo ""
+  echo "  Installing bun (recommended package manager)..."
+  curl -fsSL https://bun.sh/install | bash 2>/dev/null && echo "  ✓ bun installed" || {
+    echo "  ⚠ Could not auto-install bun."
+    echo "    macOS/Linux: curl -fsSL https://bun.sh/install | bash"
+    echo "    Windows:     winget install Oven-sh.Bun"
+  }
+fi
+
+# ── Phase 2: Install Playwright browsers ─────────────────────────────────────
 echo ""
-echo "--- Phase 2: Installing Claude Code configs ---"
+echo "Phase 2: Installing Playwright browsers (needed for screenshot tools)"
+echo ""
+
+npx --yes playwright install chromium 2>/dev/null && echo "  ✓ Chromium installed" || {
+  echo "  ⚠ Playwright browser install failed."
+  echo "    Try: npx playwright install chromium"
+  echo "    Linux only: npx playwright install --with-deps chromium"
+}
+
+# ── Phase 3: Copy Claude Code settings ───────────────────────────────────────
+echo ""
+echo "Phase 3: Installing Claude Code settings"
+echo ""
 
 mkdir -p "$CLAUDE_DIR"
 
 if [ -f "$CLAUDE_DIR/settings.json" ]; then
-  echo "  [SKIP] ~/.claude/settings.json already exists"
-  echo ""
-  echo "  Your existing file was NOT overwritten."
-  echo "  The kit includes these hooks you may want to merge manually:"
-  echo "    - Package manager gate (blocks npm/yarn, forces bun)"
-  echo "    - Frontend build check (reminds to verify after .tsx/.css edits)"
-  echo "    - Quality gate on stop (reminds to test/screenshot)"
-  echo "  Compare: $SCRIPT_DIR/configs/settings.json"
+  echo "  ⚠ ~/.claude/settings.json already exists — skipping to avoid overwrite."
+  echo "    Compare with $SCRIPT_DIR/configs/settings.json and merge manually if needed."
 else
   cp "$SCRIPT_DIR/configs/settings.json" "$CLAUDE_DIR/settings.json"
-  echo "  [OK] Copied settings.json to ~/.claude/"
+  echo "  ✓ settings.json → ~/.claude/settings.json"
 fi
 
+# ── Phase 4: Install skills ───────────────────────────────────────────────────
 echo ""
-echo "  To use configs in a project, copy them manually:"
+echo "Phase 4: Installing curated skills to ~/.claude/skills/"
 echo ""
-echo "    # Copy project template"
-echo "    cp $SCRIPT_DIR/configs/CLAUDE.md /your/project/"
-echo ""
-echo "    # Copy MCP server config (then fill in YOUR API KEYS)"
-echo "    cp $SCRIPT_DIR/configs/mcp.json /your/project/.mcp.json"
-echo ""
-echo "    # IMPORTANT: Add .mcp.json to your .gitignore (it has API keys!)"
-echo "    echo '.mcp.json' >> /your/project/.gitignore"
-echo ""
-echo "    # Copy coding rules"
-echo "    mkdir -p /your/project/.claude/rules"
-echo "    cp $SCRIPT_DIR/configs/rules/* /your/project/.claude/rules/"
 
-# ---- Phase 3: Install Playwright ----
-echo ""
-echo "--- Phase 3: Installing Playwright browsers ---"
-npx playwright install firefox chromium 2>/dev/null && echo "  [OK] Playwright browsers installed" || {
-  echo "  [WARN] Playwright install failed."
-  echo "  Try manually: npx playwright install firefox chromium"
-  echo "  On Linux, you may need: npx playwright install --with-deps"
-}
+SKILLS_DIR="$CLAUDE_DIR/skills"
+mkdir -p "$SKILLS_DIR"
 
-# ---- Phase 4: Enable plugins ----
-echo ""
-echo "--- Phase 4: Enabling plugins ---"
+SKILLS=(
+  "sensei" "design" "plato" "autopilot" "prd" "architect" "kickoff"
+  "app-builder" "iterate" "fix" "explain" "vibe-code-auditor"
+  "feedback-loop" "dispatching-parallel-agents" "micro-saas-launcher"
+  "marketing-psychology" "react-best-practices" "tailwind-patterns"
+  "typescript-expert" "baoyu-image-gen" "baoyu-infographic"
+  "canvas-design" "data-storytelling" "loki-mode" "mcp-builder"
+  "cheap-route" "beautiful-prose" "video-forge" "algorithmic-art"
+  "scroll-experience"
+)
 
-if command -v claude &>/dev/null; then
-  for plugin in claude-code-setup frontend-design playwright agent-sdk-dev claude-md-management code-simplifier; do
-    claude plugin enable "$plugin" 2>&1 && echo "  [OK] $plugin" || claude plugin enable "${plugin}@claude-plugins-official" 2>/dev/null && echo "  [OK] $plugin" || echo "  [WARN] Could not enable $plugin (install manually in Claude Code settings)"
-  done
+REPO_RAW="https://raw.githubusercontent.com/Neens6655/claude-code-powerkit/master/skills"
+
+for skill in "${SKILLS[@]}"; do
+  target_dir="$SKILLS_DIR/$skill"
+  mkdir -p "$target_dir"
+  if curl -fsSL "$REPO_RAW/${skill}.md" -o "$target_dir/SKILL.md" 2>/dev/null; then
+    echo "  ✓ /$skill"
+  else
+    echo "  ✗ /$skill — failed to fetch"
+  fi
+done
+
+# ── Phase 5: Write global CLAUDE.md ──────────────────────────────────────────
+echo ""
+echo "Phase 5: Writing global CLAUDE.md"
+echo ""
+
+GLOBAL_CLAUDE="$CLAUDE_DIR/CLAUDE.md"
+
+if [ -f "$GLOBAL_CLAUDE" ] && [ -s "$GLOBAL_CLAUDE" ]; then
+  echo "  ⚠ ~/.claude/CLAUDE.md already exists — skipping."
+  echo "    Check $SCRIPT_DIR/configs/CLAUDE.md for settings to merge."
 else
-  echo "  [SKIP] Claude CLI not found."
-  echo "  Install Claude Code first: npm install -g @anthropic-ai/claude-code"
-  echo "  Then enable plugins manually in settings."
+  cp "$SCRIPT_DIR/configs/CLAUDE.md" "$GLOBAL_CLAUDE"
+  echo "  ✓ CLAUDE.md → ~/.claude/CLAUDE.md"
 fi
 
-# ---- Phase 5: Check for unfilled placeholders ----
+# ── Phase 6: Report ───────────────────────────────────────────────────────────
 echo ""
-echo "--- Phase 5: Checking for unfilled API keys ---"
-
-PLACEHOLDERS=$(grep -oE 'YOUR_[A-Z_]+' "$SCRIPT_DIR/configs/mcp.json" 2>/dev/null | sort -u)
-if [ -n "$PLACEHOLDERS" ]; then
-  echo "  These API keys need to be filled in configs/mcp.json:"
-  echo "$PLACEHOLDERS" | while read key; do echo "    - $key"; done
-  echo ""
-  echo "  Get free keys at:"
-  echo "    Brave Search:  https://brave.com/search/api"
-  echo "    GitHub PAT:    https://github.com/settings/tokens"
-  echo "    Exa:           https://exa.ai"
-  echo "    Firecrawl:     https://firecrawl.dev"
-  echo "    Supabase:      https://supabase.com"
-  echo "    Sentry:        https://sentry.io"
-fi
-
-# ---- Done ----
+echo "  ──────────────────────────────────────────────────"
+echo "  ✅  CLAUDE CODE POWERKIT — SETUP COMPLETE"
+echo "  ──────────────────────────────────────────────────"
 echo ""
-echo "--- Setup Complete ---"
+echo "  Installed:"
+echo "    ✓ Playwright browser (screenshots work now)"
+echo "    ✓ 30 curated skills in ~/.claude/skills/"
+echo "    ✓ Claude Code settings + hooks"
+echo "    ✓ Global CLAUDE.md"
 echo ""
-echo "  Next steps:"
-echo "  1. Fill in API keys in configs/mcp.json"
-echo "  2. Copy configs to your project (see Phase 2 above)"
-echo "  3. Install skills from SKILLS.md"
-echo "  4. Run: claude 'hello, summarize my setup'"
+echo "  Next: add your MCP config to Claude Desktop"
 echo ""
-echo "  Read TIPS.md for lessons from 200+ hours of usage."
+echo "    macOS:   ~/Library/Application Support/Claude/claude_desktop_config.json"
+echo "    Windows: %APPDATA%\\Claude\\claude_desktop_config.json"
+echo ""
+echo "    Template: $SCRIPT_DIR/configs/mcp.json"
+echo "    (fill in YOUR_*_KEY placeholders with real API keys)"
+echo ""
+echo "  API keys needed (all have free tiers):"
+echo "    Brave Search  → https://api.search.brave.com"
+echo "    GitHub        → https://github.com/settings/tokens"
+echo "    Firecrawl     → https://firecrawl.dev"
+echo "    Gemini        → https://aistudio.google.com/apikey"
+echo "    OpenRouter    → https://openrouter.ai/keys"
+echo "    Perplexity    → https://perplexity.ai/settings/api"
+echo "    Replicate     → https://replicate.com/account/api-tokens"
+echo ""
+echo "  Try now in Claude Code:"
+echo "    /sensei              — activate learning mode"
+echo "    /prd                 — write requirements for an idea"
+echo "    /design              — generate UI with the design system"
+echo "    /plato [your idea]   — get 5-advisor feedback"
 echo ""

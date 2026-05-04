@@ -12,6 +12,99 @@ Install 11 MCP tools, 70+ skills, 18 specialist subagents, and production settin
 
 ---
 
+## Before You Start — Install These First
+
+The kit's MCP tools run via `npx`, so **Node.js is the only hard requirement**. Everything else is optional depending on what you build.
+
+### Minimum (required for MCP servers to work)
+
+| Tool | Why | Install |
+|------|-----|---------|
+| **Node.js v20+** | Powers all 11 MCP servers | See below |
+| **Git** | Version control, GitHub MCP | See below |
+
+### Recommended (for building projects)
+
+| Tool | Why | Install |
+|------|-----|---------|
+| **bun** | Fast package manager (used instead of npm) | See below |
+| **GitHub CLI (`gh`)** | Manage repos from the terminal | See below |
+
+### Optional (for specific skills)
+
+| Tool | Needed for | Install |
+|------|-----------|---------|
+| **Python 3.10+** | Building Python APIs (`/app-builder` with FastAPI) | See below |
+| **ffmpeg** | `/video-forge` — video encoding and trimming | See below |
+
+---
+
+### Install on macOS
+
+```bash
+# 1. Install Homebrew (package manager for Mac) — skip if you have it
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# 2. Core tools (required)
+brew install node git
+
+# 3. Recommended
+brew install bun gh
+
+# 4. Optional
+brew install python@3.12 ffmpeg
+```
+
+### Install on Windows
+
+Open **PowerShell as Administrator** and run:
+
+```powershell
+# 1. Core tools (required)
+winget install OpenJS.NodeJS.LTS
+winget install Git.Git
+
+# 2. Recommended
+winget install Oven-sh.Bun
+winget install GitHub.cli
+
+# 3. Optional
+winget install Python.Python.3.12
+winget install Gyan.FFmpeg
+```
+
+> After installing, **close and reopen** your terminal so the new commands are found.
+
+### Install on Linux (Ubuntu/Debian)
+
+```bash
+# 1. Node.js v20 (required)
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+# 2. Git (required)
+sudo apt-get install -y git
+
+# 3. Recommended
+curl -fsSL https://bun.sh/install | bash
+sudo apt install gh
+
+# 4. Optional
+sudo apt-get install -y python3 python3-pip ffmpeg
+```
+
+### Verify everything is ready
+
+```bash
+node --version    # should print v20.x.x or higher
+git --version     # should print git version 2.x.x
+npx --version     # comes with Node — should print a version number
+```
+
+If all three print a version number, you're ready to install the kit.
+
+---
+
 ## Quick Start (paste this into Claude Code)
 
 Open **Claude Code** (Desktop app, VS Code extension, or web), then paste:
