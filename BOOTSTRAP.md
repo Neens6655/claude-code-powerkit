@@ -9,7 +9,7 @@
 ## What's being installed
 
 - **11 MCP servers** — browser, search, GitHub, research, scraping, AI models, maps, memory
-- **26 curated skills** — /design, /plato, /sensei, /autopilot, /prd, /fix, and more
+- **30 curated skills** — /design, /plato, /sensei, /autopilot, /prd, /fix, /video-forge, and more
 - **26 Composio community skills** — writing, research, productivity, business tools
 - **18 VoltAgent subagents** — specialized agents for product, research, dev, QA
 - **ZGNAL Design System** — production design tokens and component patterns
@@ -192,6 +192,10 @@ Write each to: `~/.claude/skills/[skill-name]/SKILL.md`
 | loki-mode | loki-mode.md | Autonomous multi-agent startup system |
 | mcp-builder | mcp-builder.md | Build custom MCP servers |
 | cheap-route | cheap-route.md | Route non-critical tasks to cheaper models |
+| beautiful-prose | beautiful-prose.md | Publication-quality writing and editing |
+| video-forge | video-forge.md | TTS-narrated video: script → voice clone → Remotion → deliver |
+| algorithmic-art | algorithmic-art.md | Generative art with p5.js — particles, noise fields, geometry |
+| scroll-experience | scroll-experience.md | Cinematic scroll storytelling with Lenis + Framer Motion |
 
 ---
 
@@ -324,7 +328,7 @@ Then print this summary:
 
 📦 INSTALLED
   ✓ 11 MCP servers configured
-  ✓ 26 curated skills installed
+  ✓ 30 curated skills installed
   ✓ 24 Composio community skills installed
   ✓ 18 VoltAgent subagents installed
   ✓ Settings + hooks active
